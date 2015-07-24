@@ -82,25 +82,16 @@ public class CropImageActivity extends Activity {
             try {
                 String imagePath = extras.getString("ImagePATH");
                 Log.e("Image Uri", imagePath);
-                Bitmap bm = BitmapFactory.decodeFile(imagePath);
-                cropImageView.setImageBitmap(bm);
+                BitmapFactory.Options myBitmapOptions = new BitmapFactory.Options();
+                myBitmapOptions.inSampleSize = 2;
+                Bitmap imageBitmap = BitmapFactory.decodeFile(imagePath, myBitmapOptions);
+                cropImageView.setImageBitmap(imageBitmap);
                 Log.e("crop before", bitmap.getHeight() + " " + bitmap.getWidth());
                 Log.e("crop before - density", bitmap.getDensity() + "");
             }
             catch(Exception i){
                 Log.i("ERROR","Can't find image");
             }
-
-            /*File imageFile = new File(imageUri.getPath());
-            if(imageFile.exists())
-            {
-                Bitmap bitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
-                BitmapDrawable drawable = new BitmapDrawable(this.getResources(), bitmap);
-                int nh = (int) (drawable.getIntrinsicHeight() * (510.0 / drawable.getIntrinsicWidth()) );
-                Bitmap scaled = Bitmap.createScaledBitmap(bitmap, 510, nh, true);
-                cropImage.setImageBitmap(scaled);
-
-            }*/
         }
 
         nextActivityButton.setOnClickListener(new View.OnClickListener() {

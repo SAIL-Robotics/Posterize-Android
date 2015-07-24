@@ -1,9 +1,7 @@
 package com.sailrobotics.posterize;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -40,18 +38,9 @@ public class CameraActivity extends Activity {
 
         if(resultCode == Activity.RESULT_OK) {
             Uri selectedImage = imageUri; //designate Uri for an image
-            //getContentResolver().notifyChange(selectedImage,null);
-
-            //ImageView myImageView = (ImageView)findViewById(R.id.imageView2);
             File imageFile = new File(selectedImage.getPath());
             if(imageFile.exists())
             {
-                /*Bitmap bitmap = BitmapFactory.decodeFile(imageFile.getAbsolutePath());
-                BitmapDrawable drawable = new BitmapDrawable(this.getResources(), bitmap);
-                bitmap = scaleDownBitmap(bitmap,100,getApplicationContext());
-                int nh = (int) (drawable.getIntrinsicHeight() * (510.0 / drawable.getIntrinsicWidth()) );
-                Bitmap scaled = Bitmap.createScaledBitmap(bitmap, 510, nh, true);
-                myImageView.setImageBitmap(scaled);*/
                 Intent cropImageIntent = new Intent(CameraActivity.this,CropImageActivity.class);
                 cropImageIntent.putExtra("ImagePATH", selectedImage.getPath());
                 startActivity(cropImageIntent);
@@ -59,12 +48,4 @@ public class CameraActivity extends Activity {
             }
         }
     }//onActivityResult
-
-    public static Bitmap scaleDownBitmap(Bitmap photo, int newHeight, Context context) {
-        final float densityMultiplier = context.getResources().getDisplayMetrics().density;
-        int h= (int) (newHeight*densityMultiplier);
-        int w= (int) (h * photo.getWidth()/((double) photo.getHeight()));
-        photo=Bitmap.createScaledBitmap(photo, w, h, true);
-        return photo;
-    }
 }//CameraActivity
