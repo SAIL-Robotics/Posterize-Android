@@ -1,20 +1,15 @@
 package com.sailrobotics.posterize;
 
 import android.app.Activity;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
+
 import java.io.File;
 
 /**
@@ -58,9 +53,9 @@ public class CameraActivity extends Activity {
                 Bitmap scaled = Bitmap.createScaledBitmap(bitmap, 510, nh, true);
                 myImageView.setImageBitmap(scaled);*/
                 Intent cropImageIntent = new Intent(CameraActivity.this,CropImageActivity.class);
-                cropImageIntent.putExtra("ImageURI", selectedImage);
+                cropImageIntent.putExtra("ImagePATH", selectedImage.getPath());
                 startActivity(cropImageIntent);
-                Log.i("IMAGE","Transferred ImageURI");
+                Log.e("IMAGE", selectedImage.getPath());
             }
         }
     }//onActivityResult

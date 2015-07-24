@@ -1,0 +1,2 @@
+configurations.create("default")
+artifacts.add("default", file('itextpdf-5.3.2.jar'))

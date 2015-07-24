@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Posterize.iml" filepath="$PROJECT_DIR$/Posterize.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/cropper/cropper1.iml" filepath="$PROJECT_DIR$/cropper/cropper1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/itextpdf-5.3.2/itextpdf.iml" filepath="$PROJECT_DIR$/itextpdf-5.3.2/itextpdf.iml" />
     </modules>
   </component>
 </project>

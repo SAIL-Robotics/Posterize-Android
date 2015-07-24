@@ -11,7 +11,6 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 /**
  * Created by arjuns on 6/19/2015.
@@ -99,6 +98,10 @@ public class HomeScreenCanvas extends ImageView implements View.OnTouchListener 
                 Bitmap scaledBitmap=resizeImage(currentBitmap);
                 c.drawBitmap(scaledBitmap, x - scaledBitmap.getWidth() / 2, y - scaledBitmap.getHeight() / 2, null);
 
+                intent = new Intent(myContext,GalleryActivity.class);
+                myContext.startActivity(intent);
+
+
             }
             //Instagram icon
             if ( x>40*rx && x<150*rx && y>360*ry && y<454*ry)
@@ -123,7 +126,6 @@ public class HomeScreenCanvas extends ImageView implements View.OnTouchListener 
                 currentBitmap= BitmapFactory.decodeResource(getResources(), R.drawable.search_fade);
                 Bitmap scaledBitmap=resizeImage(currentBitmap);
                 c.drawBitmap(scaledBitmap, x - scaledBitmap.getWidth() / 2, y - scaledBitmap.getHeight() / 2, null);
-
             }
 
             //Camera icon
