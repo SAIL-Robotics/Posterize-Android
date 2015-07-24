@@ -42,7 +42,7 @@ public class CropImageActivity extends Activity {
                 cropImage.setImageBitmap(bm);
             }
             catch(IOException i){
-                Log.i("ERROR","Unable to find image");
+                Log.i("ERROR","Can't find image");
             }
 
             /*File imageFile = new File(imageUri.getPath());
