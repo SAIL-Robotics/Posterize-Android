@@ -9,7 +9,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageButtonLeft"
+        android:id="@+id/imageButtonLeftEffect"
         android:background="@drawable/backward_arrow"
         android:layout_alignParentLeft="true"
         android:layout_marginTop="10dp"
@@ -20,7 +20,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageButtonRight"
+        android:id="@+id/imageButtonRightEffect"
         android:background="@drawable/forward_arrow"
         android:layout_alignParentRight="true"
         android:layout_marginTop="10dp"
@@ -31,8 +31,8 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/selectedImageView"
-        android:layout_below="@+id/imageButtonLeft"
+        android:id="@+id/effectsImage"
+        android:layout_below="@+id/imageButtonLeftEffect"
         android:layout_above="@+id/horizontalScrollView"
         android:background="@drawable/android_photo"/>
 

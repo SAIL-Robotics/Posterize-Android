@@ -106,7 +106,11 @@ public class CropImageActivity extends Activity {
                 Log.e("Post", "asd");
                 File file = savePictureAfterCrop();
 
-                nextIntent = new Intent(CropImageActivity.this,PosterizeActivity.class);
+                /*nextIntent = new Intent(CropImageActivity.this,PosterizeActivity.class);
+                nextIntent.putExtra("filePath", file.getPath());
+                startActivity(nextIntent);*/
+
+                nextIntent = new Intent(CropImageActivity.this,ApplyEffectsActivity.class);
                 nextIntent.putExtra("filePath", file.getPath());
                 startActivity(nextIntent);
             }
