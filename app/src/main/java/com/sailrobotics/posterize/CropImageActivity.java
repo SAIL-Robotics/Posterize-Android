@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +13,12 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.theartofdev.edmodo.cropper.CropImageView;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by arjuns on 6/28/2015.
@@ -27,8 +34,8 @@ public class CropImageActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crop_image);
 
-        previousActivityButton = (ImageButton)findViewById(R.id.previousButtonOne);
-        nextActivityButton = (ImageButton)findViewById(R.id.nextButtonOne);
+        previousActivityButton = (ImageButton)findViewById(R.id.previousButtonCrop);
+        nextActivityButton = (ImageButton)findViewById(R.id.nextButtonCrop);
 
         cropImageView = (CropImageView) findViewById(R.id.imgView);
         cropImageView.setAspectRatio(5, 10);
@@ -36,8 +43,6 @@ public class CropImageActivity extends Activity {
         cropImageView.setGuidelines(1);
         cropImageView.setCropShape(CropImageView.CropShape.RECTANGLE);
         cropImageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-
-        Button cutImg = (Button) findViewById(R.id.button);
 
         Button cropImage = (Button) findViewById(R.id.Button_crop);
         cropImage.setOnClickListener(new View.OnClickListener() {
@@ -71,7 +76,6 @@ public class CropImageActivity extends Activity {
                 {
                     Log.e("crop after", "Too small!!");
                 }
-
             }
         });
 
@@ -86,6 +90,7 @@ public class CropImageActivity extends Activity {
                 myBitmapOptions.inSampleSize = 2;
                 Bitmap imageBitmap = BitmapFactory.decodeFile(imagePath, myBitmapOptions);
                 cropImageView.setImageBitmap(imageBitmap);
+                bitmap = cropImageView.getCroppedImage();
                 Log.e("crop before", bitmap.getHeight() + " " + bitmap.getWidth());
                 Log.e("crop before - density", bitmap.getDensity() + "");
             }
@@ -98,12 +103,48 @@ public class CropImageActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                nextIntent = new Intent(CropImageActivity.this,PosterMeasurementsActivity.class);
+                Log.e("Post", "asd");
+                File file = savePictureAfterCrop();
+
+                nextIntent = new Intent(CropImageActivity.this,PosterizeActivity.class);
+                nextIntent.putExtra("filePath", file.getPath());
                 startActivity(nextIntent);
             }
         });
     }
 
+    /** Create a File for saving an image*/
+    private File savePictureAfterCrop(){
+
+        File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+                Environment.DIRECTORY_PICTURES), "Posterize");
+
+        // Create the storage directory if it does not exist
+        if (! mediaStorageDir.exists()){
+            if (! mediaStorageDir.mkdirs()){
+                Log.d("MyCameraApp", "failed to create directory");
+                return null;
+            }
+        }
+
+        // Create a media file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        File mediaFile;
+        mediaFile = new File(mediaStorageDir.getPath() + File.separator + "afterCrop.png");
+
+
+        try {
+            OutputStream stream = new FileOutputStream(mediaFile);
+            /* Write bitmap to file using JPEG or PNG and 80% quality hint for JPEG. */
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            stream.close();
+        }
+        catch (Exception e)
+        {
+
+        }
+        return mediaFile;
+    }
     @Override
     public void onResume() {
         super.onResume();

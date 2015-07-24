@@ -13,12 +13,12 @@
         android:layout_gravity="center"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/Button_crop"
-        android:layout_below="@+id/previousButtonOne" />
+        android:layout_below="@+id/previousButtonCrop" />
 
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/previousButtonOne"
+        android:id="@+id/previousButtonCrop"
         android:background="@drawable/backward_arrow"
         android:layout_alignParentLeft="true"
         android:layout_marginTop="10dp"
@@ -29,7 +29,7 @@
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/nextButtonOne"
+        android:id="@+id/nextButtonCrop"
         android:background="@drawable/forward_arrow"
         android:layout_alignParentRight="true"
         android:layout_marginTop="10dp"

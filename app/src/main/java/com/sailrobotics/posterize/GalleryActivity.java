@@ -25,7 +25,6 @@ public class GalleryActivity extends ActionBarActivity {
                 android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
         startActivityForResult(gallery, RESULT_LOAD_IMAGE);
-
     }
 
     @Override

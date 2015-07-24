@@ -9,7 +9,7 @@
 <ImageButton
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:id="@+id/previousButtonOne"
+    android:id="@+id/previousButton"
     android:background="@drawable/backward_arrow"
     android:layout_alignParentLeft="true"
     android:layout_marginTop="10dp"
