@@ -46,12 +46,14 @@
             android:layout_height="wrap_content">
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:padding="5dp">
                 <ImageButton
                     android:background="@drawable/android_photo"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:id="@+id/noEffectIB" />
+                    android:id="@+id/noEffectIB"
+                    android:scaleType="centerCrop"/>
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
@@ -64,12 +66,14 @@
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:padding="5dp">
                 <ImageButton
                     android:background="@drawable/android_photo"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:id="@+id/invertIB" />
+                    android:id="@+id/invertIB"
+                    android:scaleType="centerCrop"/>
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
@@ -81,12 +85,14 @@
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:padding="5dp">
                 <ImageButton
                     android:background="@drawable/android_photo"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:id="@+id/sepiaIB" />
+                    android:id="@+id/sepiaIB"
+                    android:scaleType="centerCrop"/>
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
@@ -98,12 +104,14 @@
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:padding="5dp">
                 <ImageButton
                     android:background="@drawable/android_photo"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:id="@+id/greyScaleIB" />
+                    android:id="@+id/greyScaleIB"
+                    android:scaleType="centerCrop"/>
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
@@ -115,12 +123,14 @@
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:padding="5dp">
                 <ImageButton
                     android:background="@drawable/android_photo"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:id="@+id/boostRedIB" />
+                    android:id="@+id/boostRedIB"
+                    android:scaleType="centerCrop"/>
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
@@ -132,12 +142,14 @@
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:padding="5dp">
                 <ImageButton
                     android:background="@drawable/android_photo"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:id="@+id/boostGreenIB" />
+                    android:id="@+id/boostGreenIB"
+                    android:scaleType="centerCrop"/>
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
@@ -149,12 +161,14 @@
 
             <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:padding="5dp">
                 <ImageButton
                     android:background="@drawable/android_photo"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:id="@+id/boostBlueIB" />
+                    android:id="@+id/boostBlueIB"
+                    android:scaleType="centerCrop"/>
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
@@ -163,12 +177,8 @@
                     android:layout_below="@+id/boostBlueIB"
                     android:gravity="center_horizontal"/>
             </RelativeLayout>
-
-        </LinearLayout>>
-
+        </LinearLayout>
     </HorizontalScrollView>
-
-
 
 </RelativeLayout>
 

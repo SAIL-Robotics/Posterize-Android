@@ -53,6 +53,15 @@ public class ApplyEffectsActivity extends Activity {
 
         baseImageView.setImageURI(Uri.parse(path));
         baseBitmap = BitmapFactory.decodeFile(path);
+        ImageEffects horizontalScrollObject = new ImageEffects();
+
+        noneImageButton.setImageBitmap(baseBitmap);
+        invertImageButton.setImageBitmap(horizontalScrollObject.doInvert(baseBitmap));
+        sepiaImageButton.setImageBitmap(horizontalScrollObject.doSepia(baseBitmap));
+        greyscaleImageButton.setImageBitmap(horizontalScrollObject.doGreyscale(baseBitmap));
+        boostRedImageButton.setImageBitmap(horizontalScrollObject.doColourBoost(baseBitmap,1,5));
+        boostGreenImageButton.setImageBitmap(horizontalScrollObject.doColourBoost(baseBitmap,2,1));
+        boostBlueImageButton.setImageBitmap(horizontalScrollObject.doColourBoost(baseBitmap,3,2));
 
         noneImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
