@@ -69,6 +69,8 @@ public class PosterMeasurementsActivity extends Activity {
             public void onClick(View v) {
                 nextIntent = new Intent(PosterMeasurementsActivity.this, PosterizeActivity.class);
                 nextIntent.putExtra("filePath", path);
+                nextIntent.putExtra("bitmapWidth", posterWidth + "");
+                nextIntent.putExtra("bitmapHeight", posterHeight + "");
                 startActivity(nextIntent);
             }
         });
