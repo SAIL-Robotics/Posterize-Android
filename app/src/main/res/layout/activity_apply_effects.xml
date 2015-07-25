@@ -33,7 +33,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/effectsImage"
         android:layout_below="@+id/imageButtonLeftEffect"
-        android:layout_above="@+id/horizontalScrollView"/>
+        android:layout_above="@+id/horizontalScrollView"
+        android:padding="15dp"/>
 
     <HorizontalScrollView
         android:layout_width="fill_parent"
@@ -52,7 +53,8 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:id="@+id/noEffectIB"
-                    android:scaleType="centerCrop"/>
+                    android:scaleType="centerCrop"
+                    android:background="@android:color/transparent"/>
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
@@ -71,7 +73,8 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:id="@+id/invertIB"
-                    android:scaleType="centerCrop"/>
+                    android:scaleType="centerCrop"
+                    android:background="@android:color/transparent"/>
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
@@ -89,7 +92,8 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:id="@+id/sepiaIB"
-                    android:scaleType="centerCrop"/>
+                    android:scaleType="centerCrop"
+                    android:background="@android:color/transparent"/>
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
@@ -107,7 +111,8 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:id="@+id/greyScaleIB"
-                    android:scaleType="centerCrop"/>
+                    android:scaleType="centerCrop"
+                    android:background="@android:color/transparent"/>
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
@@ -125,7 +130,8 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:id="@+id/boostRedIB"
-                    android:scaleType="centerCrop"/>
+                    android:scaleType="centerCrop"
+                    android:background="@android:color/transparent"/>
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
@@ -143,7 +149,8 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:id="@+id/boostGreenIB"
-                    android:scaleType="centerCrop"/>
+                    android:scaleType="centerCrop"
+                    android:background="@android:color/transparent"/>
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
@@ -161,7 +168,8 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:id="@+id/boostBlueIB"
-                    android:scaleType="centerCrop"/>
+                    android:scaleType="centerCrop"
+                    android:background="@android:color/transparent"/>
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
