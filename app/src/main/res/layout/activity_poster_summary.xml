@@ -37,72 +37,82 @@
         android:layout_marginRight="15dp"
         />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/summaryList"
+        android:layout_below="@+id/previousButton"
+        android:padding="20dp">
+
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_below="@+id/previousButton"
-            android:padding="20dp"
-            >
-
-            <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="20dp">
+            <TextView android:text="Number of pages :"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="20dp">
-                <TextView android:text="Number of pages :"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
-                    android:textSize="20sp"/>
-                <TextView android:text="4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
-                    android:id="@+id/totalSheets"
-                    android:textSize="20sp"
-                    android:paddingLeft="10dp"/>
-            </LinearLayout>
-
-            <LinearLayout
+                android:textColor="@android:color/white"
+                android:textSize="20sp"/>
+            <TextView android:text="4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="20dp">
-                <TextView android:text="Orientation :"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
-                    android:textSize="20sp"/>
-                <TextView android:text="Landscape"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
-                    android:id="@+id/imageOrientation"
-                    android:textSize="20sp"
-                    android:paddingLeft="10dp"/>
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="20dp">
-                <TextView android:text="Location :"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
-                    android:textSize="20sp"/>
-                <TextView android:text="mypath"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@android:color/white"
-                    android:id="@+id/filePath"
-                    android:textSize="20sp"
-                    android:paddingLeft="10dp"/>
-            </LinearLayout>
+                android:textColor="@android:color/white"
+                android:id="@+id/totalSheets"
+                android:textSize="20sp"
+                android:paddingLeft="10dp"/>
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="20dp">
+            <TextView android:text="Orientation :"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"/>
+            <TextView android:text="Landscape"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:id="@+id/imageOrientation"
+                android:textSize="20sp"
+                android:paddingLeft="10dp"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="20dp">
+            <TextView android:text="Location :"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"/>
+            <TextView android:text="mypath"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@android:color/white"
+                android:id="@+id/filePath"
+                android:textSize="20sp"
+                android:paddingLeft="10dp"/>
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Locate PDF"
+            android:id="@+id/button2"
+            android:layout_gravity="center_horizontal"
+            android:padding="20dp"/>
+    </LinearLayout>
+
+
 
 </RelativeLayout>
 
