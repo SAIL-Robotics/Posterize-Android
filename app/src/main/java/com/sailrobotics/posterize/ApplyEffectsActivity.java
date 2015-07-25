@@ -155,6 +155,8 @@ public class ApplyEffectsActivity extends Activity {
 
                 nextIntent = new Intent(ApplyEffectsActivity.this, PosterMeasurementsActivity.class);
                 nextIntent.putExtra("filePath", file.getPath());
+                nextIntent.putExtra("bitmapWidth", editedBitmap.getWidth() + "");
+                nextIntent.putExtra("bitmapHeight", editedBitmap.getHeight() + "");
                 startActivity(nextIntent);
             }
         });

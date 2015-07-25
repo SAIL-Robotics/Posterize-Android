@@ -28,6 +28,49 @@
         android:layout_marginRight="15dp"
         />
 
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="width"
+        android:textColorHint="@android:color/white"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editWidth"
+        android:layout_marginTop="75dp"
+        android:layout_below="@+id/previousButton"
+        android:layout_alignStart="@+id/editHeight"
+        android:textColor="@android:color/white" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="height"
+        android:textColorHint="@android:color/white"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/editHeight"
+        android:textColor="@android:color/white"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aspect Ratio"
+        android:id="@+id/aspectHeight"
+        android:layout_below="@+id/editHeight"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Aspect Ratio"
+        android:id="@+id/aspectWidth"
+        android:layout_below="@+id/editWidth"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
 
 
