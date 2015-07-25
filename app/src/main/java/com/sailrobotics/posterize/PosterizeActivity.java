@@ -31,7 +31,7 @@ public class PosterizeActivity extends ActionBarActivity {
     private static int RESULT_LOAD_IMAGE = 1;
     static Image image;
     ImageView imageView;
-    TextView size;
+    TextView beforeOptimize, afterOptimize;
     Bitmap bitmap;
     private static String FILE = "mnt/sdcard/FirstPdf3.pdf";
 
@@ -41,16 +41,20 @@ public class PosterizeActivity extends ActionBarActivity {
     private static double a4Height = 11;
     private static double a4Width = 8.27;
 
+    String path;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_posterize);
 
-        String path = getIntent().getStringExtra("filePath");
+        path = getIntent().getStringExtra("filePath");
         newWidth = Double.parseDouble(getIntent().getStringExtra("bitmapWidth"));
         newHeight = Double.parseDouble(getIntent().getStringExtra("bitmapHeight"));
 
         imageView = (ImageView) findViewById(R.id.posterImageView);
+        beforeOptimize = (TextView) findViewById(R.id.beforeOptimize);
+        afterOptimize = (TextView) findViewById(R.id.afterOptimize);
 
         imageView.setImageURI(Uri.parse(path));
         bitmap = BitmapFactory.decodeFile(path);
@@ -68,18 +72,65 @@ public class PosterizeActivity extends ActionBarActivity {
         double totalA4Width = newWidth / a4Width;
         double totalA4Height = newHeight / a4Height;
 
+        beforeOptimize.setText("Before Optimization \n " + Math.ceil(totalA4Width) * Math.ceil(totalA4Height));
 
+        drawCutLine(oldWidth, oldHeight, totalA4Width, totalA4Height);
 
-        Button posterize = (Button) findViewById(R.id.Button_crop);
+        Button posterize = (Button) findViewById(R.id.optimizeButton);
         posterize.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
-
-                drawCutLine(bitmap.getWidth(), bitmap.getHeight(), newWidth / a4Width, newHeight / a4Height);
+                bitmap = BitmapFactory.decodeFile(path);
+                imageOptimize();
             }
         });
 
+    }
+
+    void imageOptimize()
+    {
+        double oldWidth = bitmap.getWidth();
+        double oldHeight = bitmap.getHeight();
+
+        double totalA4Width = newWidth / a4Width;
+        double totalA4Height = newHeight / a4Height;
+
+        double diffWidth = totalA4Width - (int)totalA4Width;
+        double diffHeight = totalA4Height - (int)totalA4Height;
+
+        if(diffHeight == 0)
+        {
+            Log.e("CutImage", "no height change");
+        }
+        else if(diffHeight >= 0.4)
+        {
+            Log.e("CutImage", "height increase");
+            totalA4Height = Math.ceil(totalA4Height);
+        }
+        else
+        {
+            Log.e("CutImage", "height decrease");
+            totalA4Height = Math.floor(totalA4Height);
+        }
+
+        if(diffWidth == 0)
+        {
+            Log.e("CutImage", "no width change");
+        }
+        else if(diffWidth >= 0.4)
+        {
+            Log.e("CutImage", "width increase");
+            totalA4Width = Math.ceil(totalA4Width);
+        }
+        else
+        {
+            Log.e("CutImage", "width decrease");
+            totalA4Width = Math.floor(totalA4Width);
+        }
+
+        afterOptimize.setText(totalA4Width + "  " + totalA4Height);
+        drawCutLine(oldWidth, oldHeight, totalA4Width, totalA4Height);
     }
 
     void drawCutLine(double oldWidth, double oldHeight, double totalA4Width, double totalA4Height)

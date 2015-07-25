@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/Button_crop"
+        android:layout_above="@+id/optimizeButton"
         android:layout_below="@+id/previousButtonCrop" />
 
     <ImageButton
@@ -40,7 +40,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/Button_crop"
+        android:id="@+id/optimizeButton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:text="Crop Me!!!"/>

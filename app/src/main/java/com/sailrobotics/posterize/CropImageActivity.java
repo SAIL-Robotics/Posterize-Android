@@ -44,7 +44,7 @@ public class CropImageActivity extends Activity {
         cropImageView.setCropShape(CropImageView.CropShape.RECTANGLE);
         cropImageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
 
-        Button cropImage = (Button) findViewById(R.id.Button_crop);
+        Button cropImage = (Button) findViewById(R.id.optimizeButton);
         cropImage.setOnClickListener(new View.OnClickListener() {
 
             @Override

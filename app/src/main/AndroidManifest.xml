@@ -52,6 +52,10 @@
             android:name=".PosterizeActivity"
             android:label="@string/title_activity_posterize" >
         </activity>
+        <activity
+            android:name=".PosterSummaryActivity"
+            android:label="@string/title_activity_poster_summary" >
+        </activity>
     </application>
 
 </manifest>
