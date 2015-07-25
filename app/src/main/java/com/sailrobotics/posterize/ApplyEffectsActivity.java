@@ -30,7 +30,7 @@ public class ApplyEffectsActivity extends Activity {
     ImageButton boostRedImageButton,boostGreenImageButton,boostBlueImageButton;
     Intent nextIntent, previousIntent;
     ImageView baseImageView;
-    Bitmap baseBitmap;
+    Bitmap baseBitmap, thumbnailBitmap;
     Bitmap editedBitmap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,15 +53,21 @@ public class ApplyEffectsActivity extends Activity {
 
         baseImageView.setImageURI(Uri.parse(path));
         baseBitmap = BitmapFactory.decodeFile(path);
+        thumbnailBitmap = baseBitmap;
+
+        BitmapFactory.Options myThumbnailOptions = new BitmapFactory.Options();
+        myThumbnailOptions.inSampleSize = 7;
+        Bitmap thumbnailBitmap = BitmapFactory.decodeFile(path, myThumbnailOptions);
+
         ImageEffects horizontalScrollObject = new ImageEffects();
 
         noneImageButton.setImageBitmap(baseBitmap);
-        invertImageButton.setImageBitmap(horizontalScrollObject.doInvert(baseBitmap));
-        sepiaImageButton.setImageBitmap(horizontalScrollObject.doSepia(baseBitmap));
-        greyscaleImageButton.setImageBitmap(horizontalScrollObject.doGreyscale(baseBitmap));
-        boostRedImageButton.setImageBitmap(horizontalScrollObject.doColourBoost(baseBitmap,1,5));
-        boostGreenImageButton.setImageBitmap(horizontalScrollObject.doColourBoost(baseBitmap,2,1));
-        boostBlueImageButton.setImageBitmap(horizontalScrollObject.doColourBoost(baseBitmap,3,2));
+        invertImageButton.setImageBitmap(horizontalScrollObject.doInvert(thumbnailBitmap));
+        sepiaImageButton.setImageBitmap(horizontalScrollObject.doSepia(thumbnailBitmap));
+        greyscaleImageButton.setImageBitmap(horizontalScrollObject.doGreyscale(thumbnailBitmap));
+        boostRedImageButton.setImageBitmap(horizontalScrollObject.doColourBoost(thumbnailBitmap,1,5));
+        boostGreenImageButton.setImageBitmap(horizontalScrollObject.doColourBoost(thumbnailBitmap,2,1));
+        boostBlueImageButton.setImageBitmap(horizontalScrollObject.doColourBoost(thumbnailBitmap,3,2));
 
         noneImageButton.setOnClickListener(new View.OnClickListener() {
             @Override

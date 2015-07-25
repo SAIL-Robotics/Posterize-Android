@@ -49,7 +49,6 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp">
                 <ImageButton
-                    android:background="@drawable/android_photo"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:id="@+id/noEffectIB"
@@ -69,7 +68,6 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp">
                 <ImageButton
-                    android:background="@drawable/android_photo"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:id="@+id/invertIB"
@@ -88,7 +86,6 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp">
                 <ImageButton
-                    android:background="@drawable/android_photo"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:id="@+id/sepiaIB"
@@ -107,7 +104,6 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp">
                 <ImageButton
-                    android:background="@drawable/android_photo"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:id="@+id/greyScaleIB"
@@ -126,7 +122,6 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp">
                 <ImageButton
-                    android:background="@drawable/android_photo"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:id="@+id/boostRedIB"
@@ -145,7 +140,6 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp">
                 <ImageButton
-                    android:background="@drawable/android_photo"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:id="@+id/boostGreenIB"
@@ -164,7 +158,6 @@
                 android:layout_height="wrap_content"
                 android:padding="5dp">
                 <ImageButton
-                    android:background="@drawable/android_photo"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:id="@+id/boostBlueIB"
