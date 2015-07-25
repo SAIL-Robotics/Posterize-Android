@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Element;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -311,27 +312,28 @@ public class PosterizeActivity extends ActionBarActivity {
             finalPDFHeight = (float)(finalPDFHeight * edgeHeight);
         }
         image.scaleAbsolute(finalPDFWidth, finalPDFHeight);
+
+   /*     image.setAbsolutePosition(
+                (PageSize.A4.getWidth() - image.getScaledWidth()) / 2,
+                (PageSize.A4.getHeight() - image.getScaledHeight()) / 2);
+     */
         try
         {
             Log.e("CutImage", document.getPageSize() + "");
-            image.setAbsolutePosition(
-                    (PageSize.A4.getWidth() - image.getScaledWidth()) / 2,
-                    (PageSize.A4.getHeight() - image.getScaledHeight()) / 2);
+            image.setAlignment(Element.ALIGN_CENTER);
             if(isPartWidth == true)
             {
-                image.setAbsolutePosition(0, PageSize.A4.getHeight()- image.getScaledHeight());
+                image.setAlignment(Element.ALIGN_LEFT);
             }
             if(isPartHeight == true)
             {
-                image.setAbsolutePosition(
-                        (PageSize.A4.getWidth() - image.getScaledWidth()) / 2,
-                        (PageSize.A4.getHeight() - image.getScaledHeight()) / 2);
+                image.setAlignment(Element.ALIGN_TOP);
             }
-
+            document.setMargins(2,2,2,2);
             document.add(image);
             document.newPage();
 
-        } catch (DocumentException e) {
+        }catch (DocumentException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
