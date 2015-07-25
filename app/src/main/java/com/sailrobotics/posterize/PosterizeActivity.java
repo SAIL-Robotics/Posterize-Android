@@ -1,5 +1,6 @@
 package com.sailrobotics.posterize;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -13,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,25 +23,32 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
 
 public class PosterizeActivity extends ActionBarActivity {
+    ImageButton previousActivityButton, nextActivityButton;
+    Intent nextIntent, previousIntent;
     private static int RESULT_LOAD_IMAGE = 1;
     static Image image;
     ImageView imageView;
     TextView beforeOptimize, afterOptimize;
     Bitmap bitmap;
-    private static String FILE = "mnt/sdcard/FirstPdf3.pdf";
-
+    private static String FILE = "mnt/sdcard/SamplePdf.pdf";
+    String orientation = "portrait";
     private static double newHeight;
     private static double newWidth;
 
     private static double a4Height = 11;
     private static double a4Width = 8.27;
+
+    double totalA4Width;
+    double totalA4Height;
 
     String path;
 
@@ -52,6 +61,8 @@ public class PosterizeActivity extends ActionBarActivity {
         newWidth = Double.parseDouble(getIntent().getStringExtra("bitmapWidth"));
         newHeight = Double.parseDouble(getIntent().getStringExtra("bitmapHeight"));
 
+        previousActivityButton = (ImageButton)findViewById(R.id.previousButton);
+        nextActivityButton = (ImageButton)findViewById(R.id.nextButton);
         imageView = (ImageView) findViewById(R.id.posterImageView);
         beforeOptimize = (TextView) findViewById(R.id.beforeOptimize);
         afterOptimize = (TextView) findViewById(R.id.afterOptimize);
@@ -59,18 +70,19 @@ public class PosterizeActivity extends ActionBarActivity {
         imageView.setImageURI(Uri.parse(path));
         bitmap = BitmapFactory.decodeFile(path);
 
-        double oldWidth = bitmap.getWidth();
-        double oldHeight = bitmap.getHeight();
+        final double oldWidth = bitmap.getWidth();
+        final double oldHeight = bitmap.getHeight();
 
         if(newWidth > newHeight)        //landscape is best. swap values
         {
             double tmp = a4Width;
             a4Width = a4Height;
             a4Height = tmp;
+            orientation = "landscape";
         }
 
-        double totalA4Width = newWidth / a4Width;
-        double totalA4Height = newHeight / a4Height;
+        totalA4Width = newWidth / a4Width;
+        totalA4Height = newHeight / a4Height;
 
         beforeOptimize.setText("Before Optimization \n " + Math.ceil(totalA4Width) * Math.ceil(totalA4Height));
 
@@ -86,6 +98,17 @@ public class PosterizeActivity extends ActionBarActivity {
             }
         });
 
+        nextActivityButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageDivision(oldWidth, oldHeight, totalA4Width, totalA4Height);
+                nextIntent = new Intent(PosterizeActivity.this, PosterSummaryActivity.class);
+                nextIntent.putExtra("pdfPath", FILE);
+                nextIntent.putExtra("sheets",  Math.ceil(totalA4Width) * Math.ceil(totalA4Height));
+                nextIntent.putExtra("orientation", orientation + "");
+                startActivity(nextIntent);
+            }
+        });
     }
 
     void imageOptimize()
@@ -93,8 +116,8 @@ public class PosterizeActivity extends ActionBarActivity {
         double oldWidth = bitmap.getWidth();
         double oldHeight = bitmap.getHeight();
 
-        double totalA4Width = newWidth / a4Width;
-        double totalA4Height = newHeight / a4Height;
+        totalA4Width = newWidth / a4Width;
+        totalA4Height = newHeight / a4Height;
 
         double diffWidth = totalA4Width - (int)totalA4Width;
         double diffHeight = totalA4Height - (int)totalA4Height;
@@ -183,19 +206,71 @@ public class PosterizeActivity extends ActionBarActivity {
         }
     }
 
-    double aspectRatio(double oldWidth, double oldHeight, double newSize, boolean isWidth)
+    void imageDivision(double oldWidth, double oldHeight, double totalA4Width, double totalA4Height)
     {
-        double factor;
-        if(isWidth == true)
+        double loopWidth = oldWidth / totalA4Width;
+        double loopHeight = oldHeight / totalA4Height;
+
+        int alignment = Image.MIDDLE;
+        Log.e("CutImage", "Loop - " + loopWidth + " " + loopHeight);
+
+        double edgeWidth = loopWidth * (totalA4Width - (int) totalA4Width);
+        double edgeHeight = loopHeight * (totalA4Height - (int) totalA4Height);
+
+        Log.e("CutImage", "Edge - " + edgeWidth + " " + edgeHeight);
+
+        try
         {
-            factor = newSize/oldWidth;
-            return factor * oldHeight;
+            Document document = new Document(PageSize.A4);
+            PdfWriter.getInstance(document, new FileOutputStream(FILE));
+            document.open();
+
+            int xStart = 0, yStart = 0, xEnd = (int)(loopWidth), yEnd = (int)(loopHeight);
+            boolean isPartWidth = false;
+            boolean isPartHeight = false;
+
+            for(int j = 0; j <= (int) totalA4Height; j++)
+            {
+                for(int i=0; i <= (int) totalA4Width; i++)
+                {
+                    isPartWidth = false;
+                    isPartHeight = false;
+
+                    xEnd = (int)(loopWidth);
+                    yEnd = (int)(loopHeight);
+
+                    if(i == (int) totalA4Width)
+                    {
+                        isPartWidth = true;
+                        xEnd = (int)edgeWidth;
+                        alignment = Image.LEFT;
+                    }
+                    if(j == (int) totalA4Height)
+                    {
+                        isPartHeight = true;
+                        yEnd = (int)edgeHeight;
+                        alignment = Image.TOP;
+                    }
+                    xStart = (int)(i * (int)(loopWidth));
+                    yStart = (int)(j * (int)(loopHeight));
+
+                    bitmap = BitmapFactory.decodeFile(path);
+                    Bitmap newMap = Bitmap.createBitmap(bitmap, xStart, yStart, xEnd, yEnd);
+
+                    addImage(document, newMap, isPartWidth, isPartHeight, (totalA4Width - (int) totalA4Width), (totalA4Height - (int) totalA4Height), alignment);
+                }
+            }
+            document.close();
         }
-        factor = newSize/oldHeight;
-        return factor * oldWidth;
+
+        catch (Exception e)
+        {
+            Log.e("poster", e.getMessage());
+            e.printStackTrace();
+        }
     }
 
-    private static void addImage(Document document, Bitmap newMap, boolean isPartWidth, boolean isPartHeight, double edgeWidth, double edgeHeight)
+    private static void addImage(Document document, Bitmap newMap, boolean isPartWidth, boolean isPartHeight, double edgeWidth, double edgeHeight, int alignment)
     {
         float finalPDFWidth = 585f;
         float finalPDFHeight = 832f;
@@ -206,7 +281,7 @@ public class PosterizeActivity extends ActionBarActivity {
 
             newMap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
             image = Image.getInstance(stream.toByteArray());
-            image.setAlignment(Image.MIDDLE);
+            image.setAlignment(alignment);
 
 
             Log.e("poster", image.getHeight() + "");
