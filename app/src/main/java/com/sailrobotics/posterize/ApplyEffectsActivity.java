@@ -26,9 +26,12 @@ import java.util.Date;
  */
 public class ApplyEffectsActivity extends Activity {
     ImageButton previousActivityButton, nextActivityButton;
+    ImageButton noneImageButton,invertImageButton,sepiaImageButton,greyscaleImageButton;
+    ImageButton boostRedImageButton,boostGreenImageButton,boostBlueImageButton;
     Intent nextIntent, previousIntent;
-    ImageView baseImage;
-    Bitmap bitmap;
+    ImageView baseImageView;
+    Bitmap baseBitmap;
+    Bitmap editedBitmap;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,19 +39,87 @@ public class ApplyEffectsActivity extends Activity {
 
         previousActivityButton = (ImageButton)findViewById(R.id.imageButtonLeftEffect);
         nextActivityButton = (ImageButton)findViewById(R.id.imageButtonRightEffect);
-        baseImage = (ImageView)findViewById(R.id.effectsImage);
+        invertImageButton = (ImageButton)findViewById(R.id.invertIB);
+        sepiaImageButton = (ImageButton)findViewById(R.id.sepiaIB);
+        noneImageButton = (ImageButton)findViewById(R.id.noEffectIB);
+        greyscaleImageButton = (ImageButton)findViewById(R.id.greyScaleIB);
+        boostRedImageButton = (ImageButton)findViewById(R.id.boostRedIB);
+        boostGreenImageButton = (ImageButton)findViewById(R.id.boostGreenIB);
+        boostBlueImageButton = (ImageButton)findViewById(R.id.boostBlueIB);
+        baseImageView = (ImageView)findViewById(R.id.effectsImage);
 
-        //ImageEffects addEffect = new ImageEffects();
+
         String path = getIntent().getStringExtra("filePath");
         Log.e("post", path);
 
-        baseImage.setImageURI(Uri.parse(path));
-        bitmap = BitmapFactory.decodeFile(path);
+        baseImageView.setImageURI(Uri.parse(path));
+        baseBitmap = BitmapFactory.decodeFile(path);
 
-        Bitmap editedBitmap = doInvert(bitmap);
-        baseImage.setImageBitmap(editedBitmap);
-        //addEffect.doInvert(baseBitmap);
+        noneImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                baseImageView.setImageBitmap(baseBitmap);
+            }
+        });
 
+        invertImageButton.setOnClickListener(new View.OnClickListener() {
+            ImageEffects addEffect = new ImageEffects();
+            @Override
+            public void onClick(View v) {
+                editedBitmap = addEffect.doInvert(baseBitmap);
+                baseImageView.setImageBitmap(editedBitmap);
+            }
+        });
+
+        sepiaImageButton.setOnClickListener(new View.OnClickListener() {
+            ImageEffects addEffect = new ImageEffects();
+
+            @Override
+            public void onClick(View v) {
+                editedBitmap = addEffect.doSepia(baseBitmap);
+                baseImageView.setImageBitmap(editedBitmap);
+            }
+        });
+
+        greyscaleImageButton.setOnClickListener(new View.OnClickListener() {
+            ImageEffects addEffect = new ImageEffects();
+
+            @Override
+            public void onClick(View v) {
+                editedBitmap = addEffect.doGreyscale(baseBitmap);
+                baseImageView.setImageBitmap(editedBitmap);
+            }
+        });
+
+        boostRedImageButton.setOnClickListener(new View.OnClickListener() {
+            ImageEffects addEffect = new ImageEffects();
+
+            @Override
+            public void onClick(View v) {
+                editedBitmap = addEffect.doColourBoost(baseBitmap,1,5);
+                baseImageView.setImageBitmap(editedBitmap);
+            }
+        });
+
+        boostGreenImageButton.setOnClickListener(new View.OnClickListener() {
+            ImageEffects addEffect = new ImageEffects();
+
+            @Override
+            public void onClick(View v) {
+                editedBitmap = addEffect.doColourBoost(baseBitmap,2,1);
+                baseImageView.setImageBitmap(editedBitmap);
+            }
+        });
+
+        boostBlueImageButton.setOnClickListener(new View.OnClickListener() {
+            ImageEffects addEffect = new ImageEffects();
+
+            @Override
+            public void onClick(View v) {
+                editedBitmap = addEffect.doColourBoost(baseBitmap,3,2);
+                baseImageView.setImageBitmap(editedBitmap);
+            }
+        });
 
         /*previousActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,37 +145,7 @@ public class ApplyEffectsActivity extends Activity {
         });
     }
 
-    public static Bitmap doInvert(Bitmap src) {
-        // create new bitmap with the same settings as source bitmap
-        Bitmap bmOut = Bitmap.createBitmap(src.getWidth(), src.getHeight(), src.getConfig());
-        // color info
-        int A, R, G, B;
-        int pixelColor;
-        // image size
-        int height = src.getHeight();
-        int width = src.getWidth();
 
-        // scan through every pixel
-        for (int y = 0; y < height; y++)
-        {
-            for (int x = 0; x < width; x++)
-            {
-                // get one pixel
-                pixelColor = src.getPixel(x, y);
-                // saving alpha channel
-                A = Color.alpha(pixelColor);
-                // inverting byte for each R/G/B channel
-                R = 255 - Color.red(pixelColor);
-                G = 255 - Color.green(pixelColor);
-                B = 255 - Color.blue(pixelColor);
-                // set newly-inverted pixel to output image
-                bmOut.setPixel(x, y, Color.argb(A, R, G, B));
-            }
-        }
-
-        // return final bitmap
-        return bmOut;
-    }
 
     /** Create a File for saving an image*/
     private File savePictureAfterCrop(){
@@ -129,7 +170,7 @@ public class ApplyEffectsActivity extends Activity {
         try {
             OutputStream stream = new FileOutputStream(mediaFile);
             /* Write bitmap to file using JPEG or PNG and 80% quality hint for JPEG. */
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            editedBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
             stream.close();
         }
         catch (Exception e)

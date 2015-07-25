@@ -33,8 +33,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/effectsImage"
         android:layout_below="@+id/imageButtonLeftEffect"
-        android:layout_above="@+id/horizontalScrollView"
-        android:background="@drawable/android_photo"/>
+        android:layout_above="@+id/horizontalScrollView"/>
 
     <HorizontalScrollView
         android:layout_width="fill_parent"
@@ -49,27 +48,37 @@
                 android:background="@drawable/android_photo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageButton1" />
+                android:id="@+id/noEffectIB" />
             <ImageButton
                 android:background="@drawable/android_photo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageButton2" />
+                android:id="@+id/invertIB" />
             <ImageButton
                 android:background="@drawable/android_photo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageButton3" />
+                android:id="@+id/sepiaIB" />
             <ImageButton
                 android:background="@drawable/android_photo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageButton4" />
+                android:id="@+id/greyScaleIB" />
             <ImageButton
                 android:background="@drawable/android_photo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageButton5" />
+                android:id="@+id/boostRedIB" />
+            <ImageButton
+                android:background="@drawable/android_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/boostGreenIB" />
+            <ImageButton
+                android:background="@drawable/android_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/boostBlueIB" />
         </LinearLayout>>
 
     </HorizontalScrollView>
