@@ -1,17 +1,24 @@
 package com.sailrobotics.posterize;
 
+import android.app.Activity;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
-public class PosterSummaryActivity extends ActionBarActivity {
+public class PosterSummaryActivity extends Activity {
+
+    TextView imagePath,numberOfSheets,orientationType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_poster_summary);
+        imagePath = (TextView)findViewById(R.id.filePath);
+        numberOfSheets = (TextView)findViewById(R.id.totalSheets);
+        orientationType = (TextView)findViewById(R.id.imageOrientation);
     }
 
     @Override
