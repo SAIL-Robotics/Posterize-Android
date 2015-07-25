@@ -146,7 +146,7 @@ public class ApplyEffectsActivity extends Activity {
         nextActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                File file = savePictureAfterCrop();
+                File file = savePictureAfterEffects();
 
                 /*nextIntent = new Intent(CropImageActivity.this,PosterizeActivity.class);
                 nextIntent.putExtra("filePath", file.getPath());
@@ -162,7 +162,7 @@ public class ApplyEffectsActivity extends Activity {
 
 
     /** Create a File for saving an image*/
-    private File savePictureAfterCrop(){
+    private File savePictureAfterEffects(){
 
         File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
                 Environment.DIRECTORY_PICTURES), "Posterize");
@@ -170,7 +170,7 @@ public class ApplyEffectsActivity extends Activity {
         // Create the storage directory if it does not exist
         if (! mediaStorageDir.exists()){
             if (! mediaStorageDir.mkdirs()){
-                Log.d("MyCameraApp", "failed to create directory");
+                Log.d("Posterize", "failed to create directory");
                 return null;
             }
         }
@@ -184,7 +184,12 @@ public class ApplyEffectsActivity extends Activity {
         try {
             OutputStream stream = new FileOutputStream(mediaFile);
             /* Write bitmap to file using JPEG or PNG and 80% quality hint for JPEG. */
-            editedBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            if(editedBitmap == null) {
+                baseBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            }
+            else {
+                editedBitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            }
             stream.close();
         }
         catch (Exception e)
