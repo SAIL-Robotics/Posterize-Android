@@ -59,7 +59,7 @@ public class PosterizeActivity extends ActionBarActivity {
                 Log.e("CutImage", oldWidth + " - " + oldHeight);
                 double newHeight = 23.3;
                 double newWidth = aspectRatio(oldWidth, oldHeight, newHeight, false);
-                Log.e("CutImage", newWidth + " width")                ;
+                Log.e("CutImage", newWidth + " width");
 
                 if(newWidth > newHeight)        //landscape is best. swap values
                 {

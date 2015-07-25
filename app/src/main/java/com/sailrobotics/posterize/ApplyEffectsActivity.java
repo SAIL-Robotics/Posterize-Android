@@ -4,9 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -152,7 +149,11 @@ public class ApplyEffectsActivity extends Activity {
                 nextIntent.putExtra("filePath", file.getPath());
                 startActivity(nextIntent);*/
 
-                nextIntent = new Intent(ApplyEffectsActivity.this,PosterizeActivity.class);
+                /*nextIntent = new Intent(ApplyEffectsActivity.this,PosterizeActivity.class);
+                nextIntent.putExtra("filePath", file.getPath());
+                startActivity(nextIntent);*/
+
+                nextIntent = new Intent(ApplyEffectsActivity.this, PosterMeasurementsActivity.class);
                 nextIntent.putExtra("filePath", file.getPath());
                 startActivity(nextIntent);
             }
