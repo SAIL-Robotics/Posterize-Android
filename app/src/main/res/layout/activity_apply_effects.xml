@@ -44,41 +44,126 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
-            <ImageButton
-                android:background="@drawable/android_photo"
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/noEffectIB" />
-            <ImageButton
-                android:background="@drawable/android_photo"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:background="@drawable/android_photo"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:id="@+id/noEffectIB" />
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="No effect"
+                    android:textColor="#FFFFFF"
+                    android:layout_below="@+id/noEffectIB"
+                    android:layout_centerHorizontal="true"
+                    android:gravity="center_horizontal"/>
+                </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/invertIB" />
-            <ImageButton
-                android:background="@drawable/android_photo"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:background="@drawable/android_photo"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:id="@+id/invertIB" />
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="Invert"
+                    android:textColor="#FFFFFF"
+                    android:layout_below="@+id/invertIB"
+                    android:gravity="center_horizontal"/>
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/sepiaIB" />
-            <ImageButton
-                android:background="@drawable/android_photo"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:background="@drawable/android_photo"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:id="@+id/sepiaIB" />
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="Sepia"
+                    android:textColor="#FFFFFF"
+                    android:layout_below="@+id/sepiaIB"
+                    android:gravity="center_horizontal"/>
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/greyScaleIB" />
-            <ImageButton
-                android:background="@drawable/android_photo"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:background="@drawable/android_photo"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:id="@+id/greyScaleIB" />
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="Greyscale"
+                    android:textColor="#FFFFFF"
+                    android:layout_below="@+id/greyScaleIB"
+                    android:gravity="center_horizontal"/>
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/boostRedIB" />
-            <ImageButton
-                android:background="@drawable/android_photo"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:background="@drawable/android_photo"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:id="@+id/boostRedIB" />
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="Red"
+                    android:textColor="#FFFFFF"
+                    android:layout_below="@+id/boostRedIB"
+                    android:gravity="center_horizontal"/>
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/boostGreenIB" />
-            <ImageButton
-                android:background="@drawable/android_photo"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:background="@drawable/android_photo"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:id="@+id/boostGreenIB" />
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="Green"
+                    android:textColor="#FFFFFF"
+                    android:layout_below="@+id/boostGreenIB"
+                    android:gravity="center_horizontal"/>
+            </RelativeLayout>
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/boostBlueIB" />
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:background="@drawable/android_photo"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:id="@+id/boostBlueIB" />
+                <TextView
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:text="Blue"
+                    android:textColor="#FFFFFF"
+                    android:layout_below="@+id/boostBlueIB"
+                    android:gravity="center_horizontal"/>
+            </RelativeLayout>
+
         </LinearLayout>>
 
     </HorizontalScrollView>

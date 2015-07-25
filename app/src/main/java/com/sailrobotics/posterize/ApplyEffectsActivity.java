@@ -48,7 +48,6 @@ public class ApplyEffectsActivity extends Activity {
         boostBlueImageButton = (ImageButton)findViewById(R.id.boostBlueIB);
         baseImageView = (ImageView)findViewById(R.id.effectsImage);
 
-
         String path = getIntent().getStringExtra("filePath");
         Log.e("post", path);
 
