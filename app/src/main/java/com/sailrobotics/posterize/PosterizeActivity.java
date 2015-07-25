@@ -104,7 +104,7 @@ public class PosterizeActivity extends ActionBarActivity {
                 imageDivision(oldWidth, oldHeight, totalA4Width, totalA4Height);
                 nextIntent = new Intent(PosterizeActivity.this, PosterSummaryActivity.class);
                 nextIntent.putExtra("pdfPath", FILE);
-                nextIntent.putExtra("sheets",  Math.ceil(totalA4Width) * Math.ceil(totalA4Height));
+                nextIntent.putExtra("sheets",  Math.ceil(totalA4Width) * Math.ceil(totalA4Height) + "");
                 nextIntent.putExtra("orientation", orientation + "");
                 startActivity(nextIntent);
             }
@@ -317,6 +317,17 @@ public class PosterizeActivity extends ActionBarActivity {
             image.setAbsolutePosition(
                     (PageSize.A4.getWidth() - image.getScaledWidth()) / 2,
                     (PageSize.A4.getHeight() - image.getScaledHeight()) / 2);
+            if(isPartWidth == true)
+            {
+                image.setAbsolutePosition(0, PageSize.A4.getHeight()- image.getScaledHeight());
+            }
+            if(isPartHeight == true)
+            {
+                image.setAbsolutePosition(
+                        (PageSize.A4.getWidth() - image.getScaledWidth()) / 2,
+                        (PageSize.A4.getHeight() - image.getScaledHeight()) / 2);
+            }
+
             document.add(image);
             document.newPage();
 
