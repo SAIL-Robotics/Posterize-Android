@@ -53,14 +53,23 @@ public class MarkReferenceActivity extends Activity {
             @Override
             public void onClick(View v) {
                 EditText knownLength = (EditText)findViewById(R.id.knownLength);
-                double known = Double.parseDouble(knownLength.getText().toString());
+                double known = 0d;
+                if(knownLength.getText().length() != 0)
+                {
+                    known = Double.parseDouble(knownLength.getText().toString());
+                }
+                else
+                {
+                    return;
+                }
                 double distance = plot.calculateDistance(known);
 
-                SharedPreferences.Editor editor = mySharedpreferences.edit();
-                editor.putString("Distance", distance + " ");
-                editor.commit();
-                Log.i("DISTANCE"," "+ distance);
-
+                if(distance > 0) {
+                    SharedPreferences.Editor editor = mySharedpreferences.edit();
+                    editor.putString("Distance", distance + " ");
+                    editor.commit();
+                    Log.i("DISTANCE", " " + distance);
+                }
                 finish();
             }
         });

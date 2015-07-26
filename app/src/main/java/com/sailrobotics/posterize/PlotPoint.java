@@ -51,7 +51,8 @@ public class PlotPoint extends SurfaceView
             {
                 paint.setColor(Color.GREEN);
             }
-            canvas.drawCircle(listPoints.get(i).x, listPoints.get(i).y, 15, paint);
+            canvas.drawCircle(listPoints.get(i).x, listPoints.get(i).y, 10, paint);
+            paint.setStrokeWidth(3);
             if(i ==1)
             {
                 canvas.drawLine(listPoints.get(0).x, listPoints.get(0).y, listPoints.get(1).x, listPoints.get(1).y, paint);
@@ -91,6 +92,11 @@ public class PlotPoint extends SurfaceView
 
     public double calculateDistance(double known)
     {
+        if(listPoints.size() < 3)
+        {
+            Log.e("post", "Not enough values");
+            return 0;
+        }
         FindDistanceUtil dist = new FindDistanceUtil(listPoints.get(0), listPoints.get(1), listPoints.get(2), listPoints.get(3), known);
         Log.e("post", dist.calculateDistance() + "");
         return dist.calculateDistance();

@@ -1,7 +1,6 @@
 package com.sailrobotics.posterize;
 
 import android.app.Activity;
-import android.app.Notification;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -73,6 +72,7 @@ public class TakeCameraMeasurement extends Activity {
                 Intent cropImageIntent = new Intent(TakeCameraMeasurement.this,MarkReferenceActivity.class);
                 cropImageIntent.putExtra("ImagePATH", selectedImage.getPath());
                 startActivity(cropImageIntent);
+                finish();
                 Log.e("IMAGE", selectedImage.getPath());
             }
         }
