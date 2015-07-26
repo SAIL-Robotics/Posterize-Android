@@ -1,6 +1,8 @@
 package com.sailrobotics.posterize;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +20,7 @@ public class MarkReferenceActivity extends Activity {
     FrameLayout plotImageView;
     Button doneButton;
     PlotPoint plot;
+    SharedPreferences mySharedpreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +29,7 @@ public class MarkReferenceActivity extends Activity {
 
         plotImageView = (FrameLayout)findViewById(R.id.posterImageView);
         doneButton = (Button)findViewById(R.id.proceedButton);
+        mySharedpreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
 
         Bundle extras = getIntent().getExtras();
 
@@ -48,13 +52,16 @@ public class MarkReferenceActivity extends Activity {
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 EditText knownLength = (EditText)findViewById(R.id.knownLength);
                 double known = Double.parseDouble(knownLength.getText().toString());
+                double distance = plot.calculateDistance(known);
 
-                plot.calculateDistance(known);
+                SharedPreferences.Editor editor = mySharedpreferences.edit();
+                editor.putString("Distance", distance + " ");
+                editor.commit();
+                Log.i("DISTANCE"," "+ distance);
 
-                //finish();
+                finish();
             }
         });
 

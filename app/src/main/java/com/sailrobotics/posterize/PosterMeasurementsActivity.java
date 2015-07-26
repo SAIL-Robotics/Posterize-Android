@@ -1,7 +1,9 @@
 package com.sailrobotics.posterize;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +21,8 @@ public class PosterMeasurementsActivity extends Activity {
     Double posterWidth, posterHeight;
     EditText width, height;
     Button takePictureButton,aspectWidth,aspectHeight;
+    SharedPreferences mySharedpreferences;
+    String distance;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +41,9 @@ public class PosterMeasurementsActivity extends Activity {
         takePictureButton = (Button)findViewById(R.id.invokeCameraButton);
         width = (EditText)findViewById(R.id.editWidth);
         height = (EditText)findViewById(R.id.editHeight);
+
+        mySharedpreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+        mySharedpreferences.getString("Distance",distance);
 
         aspectWidth.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,7 +72,6 @@ public class PosterMeasurementsActivity extends Activity {
                 startActivity(invokeCameraIntent);
             }
         });
-
 
         previousActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override

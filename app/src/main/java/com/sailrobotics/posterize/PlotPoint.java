@@ -89,9 +89,10 @@ public class PlotPoint extends SurfaceView
         return false;
     }
 
-    public void calculateDistance(double known)
+    public double calculateDistance(double known)
     {
         FindDistanceUtil dist = new FindDistanceUtil(listPoints.get(0), listPoints.get(1), listPoints.get(2), listPoints.get(3), known);
         Log.e("post", dist.calculateDistance() + "");
+        return dist.calculateDistance();
     }
 }
