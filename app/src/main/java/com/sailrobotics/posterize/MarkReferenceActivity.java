@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -38,7 +39,8 @@ public class MarkReferenceActivity extends Activity {
         resetButton = (Button)findViewById(R.id.reset);
         redoButton = (Button)findViewById(R.id.redo);
         nextButton = (ImageButton)findViewById(R.id.nextButton);
-        mySharedpreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+        //mySharedpreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+        mySharedpreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         Bundle extras = getIntent().getExtras();
 
@@ -90,7 +92,7 @@ public class MarkReferenceActivity extends Activity {
                 if (distance > 0) {
                     SharedPreferences.Editor editor = mySharedpreferences.edit();
                     editor.putString("Distance", distance + " ");
-                    editor.commit();
+                    editor.apply();
                     Log.i("DISTANCE", " " + distance);
                 } else {
                     Log.e("post", "Some error on placing points/distance calculation");
