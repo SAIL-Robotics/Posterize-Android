@@ -12,6 +12,10 @@ public class FindDistanceUtil {
     public FindDistanceUtil(Point known1, Point known2, Point unknown1, Point unknown2, double realDistance)
     {
         knownRealDistance = realDistance;
+        k1 = known1;
+        k2 = known2;
+        u1 = unknown1;
+        u2 = unknown2;
     }
 
     double coordinateDistance(Point p1, Point p2)

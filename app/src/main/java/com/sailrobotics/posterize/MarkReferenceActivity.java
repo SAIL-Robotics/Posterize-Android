@@ -1,29 +1,30 @@
 package com.sailrobotics.posterize;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+
+import java.io.File;
 
 /**
  * Created by asanthan on 7/25/15.
  */
 public class MarkReferenceActivity extends Activity {
 
-    ImageView plotImageView;
+    FrameLayout plotImageView;
     Button doneButton;
+    PlotPoint plot;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mark_reference);
 
-        plotImageView = (ImageView)findViewById(R.id.markImageView);
+        plotImageView = (FrameLayout)findViewById(R.id.posterImageView);
         doneButton = (Button)findViewById(R.id.proceedButton);
 
         Bundle extras = getIntent().getExtras();
@@ -33,10 +34,11 @@ public class MarkReferenceActivity extends Activity {
             try {
                 String imagePath = extras.getString("ImagePATH");
                 Log.e("Image Uri", imagePath);
-                BitmapFactory.Options myBitmapOptions = new BitmapFactory.Options();
-                myBitmapOptions.inSampleSize = 2;
-                Bitmap imageBitmap = BitmapFactory.decodeFile(imagePath, myBitmapOptions);
-                plotImageView.setImageBitmap(imageBitmap);
+                File tmp = new File(imagePath);
+                ImageSurface image = new ImageSurface(this, tmp);
+                plotImageView.addView(image);
+                plot = new PlotPoint(getBaseContext());
+                plotImageView.addView(plot);
             }
             catch(Exception i){
                 Log.i("ERROR","Can't find image");
@@ -46,7 +48,13 @@ public class MarkReferenceActivity extends Activity {
         doneButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+
+                EditText knownLength = (EditText)findViewById(R.id.knownLength);
+                double known = Double.parseDouble(knownLength.getText().toString());
+
+                plot.calculateDistance(known);
+
+                //finish();
             }
         });
 

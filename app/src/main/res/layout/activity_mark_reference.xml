@@ -5,15 +5,15 @@
     android:layout_height="match_parent"
     android:background="@drawable/background">
 
-    <ImageView
-        xmlns:custom="http://schemas.android.com/apk/res-auto"
+    <FrameLayout
         android:id="@+id/posterImageView"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/optimizeButton"
-        android:layout_below="@+id/previousButton" />
+        android:layout_weight="1"
+        android:layout_below="@+id/previousButton"
+        android:layout_above="@+id/proceedButton"
+        android:layout_alignParentStart="true" />
 
     <ImageButton
         android:layout_width="wrap_content"
@@ -36,23 +36,21 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp" />
 
-    <ImageView
-        xmlns:custom="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/markImageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/previousButton"
-        android:layout_above="@+id/proceedButton"/>
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Done"
         android:id="@+id/proceedButton"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_toStartOf="@+id/nextButton" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/knownLength"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/previousButton"
+        android:textColor="@android:color/white" />
 
 
 </RelativeLayout>
