@@ -11,7 +11,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 
@@ -19,6 +21,7 @@ import java.io.File;
 public class PosterSummaryActivity extends Activity {
 
     TextView imagePath,numberOfSheets,orientationType;
+    ImageButton googleDriveButton,facebookButton,twitterButton,instagramButton;
     String pdfPath,orientation;
     String sheetsCount;
     Button openPdfButton;
@@ -32,6 +35,10 @@ public class PosterSummaryActivity extends Activity {
         numberOfSheets = (TextView)findViewById(R.id.totalSheets);
         orientationType = (TextView)findViewById(R.id.imageOrientation);
         openPdfButton = (Button)findViewById(R.id.generatePdfButton);
+        googleDriveButton = (ImageButton) findViewById(R.id.driveImageButton);
+        facebookButton = (ImageButton) findViewById(R.id.facebookImageButton);
+        twitterButton = (ImageButton) findViewById(R.id.twitterImageButton);
+        instagramButton = (ImageButton) findViewById(R.id.instagramImageButton);
 
         Intent intent = getIntent();
         pdfPath = intent.getStringExtra("pdfPath");
@@ -41,6 +48,38 @@ public class PosterSummaryActivity extends Activity {
         numberOfSheets.setText(sheetsCount);
         imagePath.setText(pdfPath);
         orientationType.setText(orientation);
+
+
+        googleDriveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Google Drive", Toast.LENGTH_SHORT).show();
+                Intent googleDriveActivityIntent = new Intent(PosterSummaryActivity.this,GoogleDriveActivity.class);
+                startActivity(googleDriveActivityIntent);
+            }
+        });
+
+        facebookButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Facebook", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        twitterButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Twitter", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        instagramButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Instagram", Toast.LENGTH_SHORT).show();
+            }
+        });
+
 
         openPdfButton.setOnClickListener(new View.OnClickListener() {
             @Override

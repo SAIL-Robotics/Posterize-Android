@@ -41,10 +41,11 @@ public class PosterMeasurementsActivity extends Activity {
 
         previousActivityButton = (ImageButton) findViewById(R.id.previousButton);
         nextActivityButton = (ImageButton) findViewById(R.id.nextButton);
-        //dialogOk = (Button)Dialog.findViewById(R.id.dialog_ok_button);
         aspectWidth = (Button) findViewById(R.id.aspectWidth);
         aspectHeight = (Button) findViewById(R.id.aspectHeight);
         takePictureButton = (Button) findViewById(R.id.invokeCameraButton);
+
+
         width = (EditText) findViewById(R.id.editWidth);
         height = (EditText) findViewById(R.id.editHeight);
 
