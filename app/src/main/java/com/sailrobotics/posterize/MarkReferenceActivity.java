@@ -2,6 +2,7 @@ package com.sailrobotics.posterize;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -9,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
+import android.widget.Toast;
 
 import java.io.File;
 
@@ -18,9 +21,12 @@ import java.io.File;
 public class MarkReferenceActivity extends Activity {
 
     FrameLayout plotImageView;
-    Button doneButton;
+    Button doneButton, resetButton, redoButton;
+    ImageButton nextButton;
     PlotPoint plot;
     SharedPreferences mySharedpreferences;
+    double distance;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +35,9 @@ public class MarkReferenceActivity extends Activity {
 
         plotImageView = (FrameLayout)findViewById(R.id.posterImageView);
         doneButton = (Button)findViewById(R.id.proceedButton);
+        resetButton = (Button)findViewById(R.id.reset);
+        redoButton = (Button)findViewById(R.id.redo);
+        nextButton = (ImageButton)findViewById(R.id.nextButton);
         mySharedpreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
 
         Bundle extras = getIntent().getExtras();
@@ -60,21 +69,44 @@ public class MarkReferenceActivity extends Activity {
                 }
                 else
                 {
+                    Log.e("post", "Fill the textbox with some value");
                     return;
                 }
-                double distance = plot.calculateDistance(known);
+                distance = plot.calculateDistance(known);
+                Toast.makeText(getApplication(), distance + "", Toast.LENGTH_SHORT).show();
+            }
+        });
 
-                if(distance > 0) {
+        resetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                plot.resetCanvas();
+            }
+        });
+
+        nextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (distance > 0) {
                     SharedPreferences.Editor editor = mySharedpreferences.edit();
                     editor.putString("Distance", distance + " ");
                     editor.commit();
                     Log.i("DISTANCE", " " + distance);
+                } else {
+                    Log.e("post", "Some error on placing points/distance calculation");
+                    return;
                 }
                 finish();
             }
         });
 
+        redoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent invokeCameraIntent = new Intent(MarkReferenceActivity.this,TakeCameraMeasurement.class);
+                startActivity(invokeCameraIntent);
+            }
+        });
+
     }
-
-
 }

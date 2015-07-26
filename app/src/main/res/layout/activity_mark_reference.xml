@@ -40,18 +40,37 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Done"
+        android:text="Calc"
         android:id="@+id/proceedButton"
+        android:layout_marginStart="34dp"
         android:layout_alignParentBottom="true"
-        android:layout_toStartOf="@+id/nextButton" />
+        android:layout_toEndOf="@+id/previousButton" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/knownLength"
+        android:inputType="numberDecimal"
+        android:ems="10"
         android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/previousButton"
-        android:textColor="@android:color/white" />
+        android:textColor="@android:color/white"
+        android:layout_toStartOf="@+id/proceedButton" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset"
+        android:id="@+id/reset"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/proceedButton" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Take Picture"
+        android:id="@+id/redo"
+        android:layout_alignTop="@+id/reset"
+        android:layout_toEndOf="@+id/reset" />
 
 
 </RelativeLayout>

@@ -90,6 +90,12 @@ public class PlotPoint extends SurfaceView
         return false;
     }
 
+    public void resetCanvas()
+    {
+        listPoints.clear();
+        invalidate();
+    }
+
     public double calculateDistance(double known)
     {
         if(listPoints.size() < 3)
