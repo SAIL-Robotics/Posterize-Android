@@ -71,6 +71,15 @@
         android:layout_below="@+id/editWidth"
         android:layout_centerHorizontal="true" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Invoke Camera"
+        android:id="@+id/invokeCameraButton"
+        android:layout_marginBottom="64dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/aspectHeight" />
+
 </RelativeLayout>
 
 

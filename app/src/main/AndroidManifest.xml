@@ -56,6 +56,14 @@
             android:name=".PosterSummaryActivity"
             android:label="@string/title_activity_poster_summary" >
         </activity>
+        <activity
+            android:name=".TakeCameraMeasurement"
+            android:label="@string/title_activity_poster_summary" >
+        </activity>
+        <activity
+            android:name=".MarkReferenceActivity"
+            android:label="@string/title_activity_poster_summary" >
+        </activity>
     </application>
 
 </manifest>

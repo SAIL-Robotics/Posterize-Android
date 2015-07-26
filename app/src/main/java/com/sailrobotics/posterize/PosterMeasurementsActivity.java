@@ -18,6 +18,7 @@ public class PosterMeasurementsActivity extends Activity {
     Double bitmapWidth, bitmapHeight;
     Double posterWidth, posterHeight;
     EditText width, height;
+    Button takePictureButton,aspectWidth,aspectHeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +32,9 @@ public class PosterMeasurementsActivity extends Activity {
 
         previousActivityButton = (ImageButton)findViewById(R.id.previousButton);
         nextActivityButton = (ImageButton)findViewById(R.id.nextButton);
-        Button aspectWidth = (Button) findViewById(R.id.aspectWidth);
-        Button aspectHeight = (Button) findViewById(R.id.aspectHeight);
+        aspectWidth = (Button) findViewById(R.id.aspectWidth);
+        aspectHeight = (Button) findViewById(R.id.aspectHeight);
+        takePictureButton = (Button)findViewById(R.id.invokeCameraButton);
         width = (EditText)findViewById(R.id.editWidth);
         height = (EditText)findViewById(R.id.editHeight);
 
@@ -55,6 +57,15 @@ public class PosterMeasurementsActivity extends Activity {
                 width.setText(posterWidth.toString());
             }
         });
+
+        takePictureButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent invokeCameraIntent = new Intent(PosterMeasurementsActivity.this,TakeCameraMeasurement.class);
+                startActivity(invokeCameraIntent);
+            }
+        });
+
 
         previousActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
