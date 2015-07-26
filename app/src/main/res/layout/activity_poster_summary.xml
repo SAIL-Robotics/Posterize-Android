@@ -110,7 +110,58 @@
             android:id="@+id/generatePdfButton"
             android:layout_gravity="center_horizontal"
             android:padding="20dp"/>
+
+        <TextView android:text="Share it on"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="50dp"
+            android:paddingBottom="30dp"
+            android:textColor="@android:color/white"
+            android:layout_gravity="center_horizontal"
+            android:textSize="20sp"/>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:padding="20dp">
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:id="@+id/driveImageButton"
+                android:background="@drawable/googledrive_icon"/>
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:id="@+id/facebookImageButton"
+                android:background="@drawable/facebook_icon"
+                android:layout_toRightOf="@+id/driveImageButton"/>
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:id="@+id/twitterImageButton"
+                android:background="@drawable/instagram_icon"
+                android:layout_toRightOf="@+id/facebookImageButton"/>
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="30dp"
+                android:id="@+id/instagramImageButton"
+                android:background="@drawable/twitter_icon"
+                android:layout_toRightOf="@+id/twitterImageButton"/>
+
+        </RelativeLayout>
+
     </LinearLayout>
+
+
 
 
 
