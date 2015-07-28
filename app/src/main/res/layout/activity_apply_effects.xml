@@ -8,7 +8,7 @@
 
     <ImageButton
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:id="@+id/imageButtonLeftEffect"
         android:background="@drawable/backward_arrow"
         android:layout_alignParentLeft="true"
@@ -19,7 +19,7 @@
 
     <ImageButton
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:id="@+id/imageButtonRightEffect"
         android:background="@drawable/forward_arrow"
         android:layout_alignParentRight="true"

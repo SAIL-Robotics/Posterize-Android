@@ -17,7 +17,7 @@
 
     <ImageButton
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:id="@+id/previousButton"
         android:background="@drawable/backward_arrow"
         android:layout_alignParentLeft="true"
@@ -28,7 +28,7 @@
 
     <ImageButton
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:id="@+id/nextButton"
         android:background="@drawable/forward_arrow"
         android:layout_alignParentRight="true"
