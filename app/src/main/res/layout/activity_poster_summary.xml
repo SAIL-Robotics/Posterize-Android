@@ -130,14 +130,14 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:id="@+id/driveImageButton"
-                android:background="@drawable/googledrive_icon"/>
+                android:background="@drawable/googledrive"/>
 
             <ImageButton
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="30dp"
                 android:id="@+id/facebookImageButton"
-                android:background="@drawable/facebook_icon"
+                android:background="@drawable/facebook"
                 android:layout_toRightOf="@+id/driveImageButton"/>
 
             <ImageButton
@@ -145,7 +145,7 @@
                 android:layout_height="50dp"
                 android:layout_marginLeft="30dp"
                 android:id="@+id/twitterImageButton"
-                android:background="@drawable/twitter_icon"
+                android:background="@drawable/twitter"
                 android:layout_toRightOf="@+id/facebookImageButton"/>
 
             <ImageButton
@@ -153,7 +153,7 @@
                 android:layout_height="50dp"
                 android:layout_marginLeft="30dp"
                 android:id="@+id/instagramImageButton"
-                android:background="@drawable/instagram_icon"
+                android:background="@drawable/instagram"
                 android:layout_toRightOf="@+id/twitterImageButton"/>
 
         </RelativeLayout>
