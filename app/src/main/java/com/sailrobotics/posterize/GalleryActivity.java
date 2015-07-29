@@ -69,5 +69,9 @@ public class GalleryActivity extends ActionBarActivity {
             startActivity(cropImageIntent);
             Log.e("IMAGE", picturePath);
         }
+        else if(resultCode == RESULT_CANCELED) {
+            Intent homeScreenIntent = new Intent(GalleryActivity.this,HomeScreenActivity.class);
+            startActivity(homeScreenIntent);
+        }
     }
 }
