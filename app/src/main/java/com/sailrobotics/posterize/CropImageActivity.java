@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.theartofdev.edmodo.cropper.CropImageView;
 
@@ -27,6 +28,7 @@ public class CropImageActivity extends Activity {
     ImageButton previousActivityButton, nextActivityButton;
     Intent nextIntent;
     CropImageView cropImageView;
+    Bitmap imageBitmap;
     Bitmap bitmap;
 
     @Override
@@ -74,6 +76,7 @@ public class CropImageActivity extends Activity {
                 }
                 catch (Exception e)
                 {
+                    Toast.makeText(getBaseContext(), "Image too small to crop!", Toast.LENGTH_SHORT).show();
                     Log.e("crop after", "Too small!!");
                 }
             }
@@ -88,7 +91,7 @@ public class CropImageActivity extends Activity {
                 Log.e("Image Uri", imagePath);
                 BitmapFactory.Options myBitmapOptions = new BitmapFactory.Options();
                 myBitmapOptions.inSampleSize = 2;
-                Bitmap imageBitmap = BitmapFactory.decodeFile(imagePath, myBitmapOptions);
+                imageBitmap = BitmapFactory.decodeFile(imagePath, myBitmapOptions);
                 cropImageView.setImageBitmap(imageBitmap);
                 bitmap = cropImageView.getCroppedImage();
                 Log.e("crop before", bitmap.getHeight() + " " + bitmap.getWidth());
@@ -112,6 +115,7 @@ public class CropImageActivity extends Activity {
 
                 nextIntent = new Intent(CropImageActivity.this,ApplyEffectsActivity.class);
                 nextIntent.putExtra("filePath", file.getPath());
+                Log.e("CutImage", file.getPath());
                 startActivity(nextIntent);
             }
         });
@@ -140,6 +144,10 @@ public class CropImageActivity extends Activity {
         try {
             OutputStream stream = new FileOutputStream(mediaFile);
             /* Write bitmap to file using JPEG or PNG and 80% quality hint for JPEG. */
+            if(bitmap == null)
+            {
+                bitmap = imageBitmap;
+            }
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
             stream.close();
         }
