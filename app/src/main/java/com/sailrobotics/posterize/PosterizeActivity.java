@@ -211,8 +211,6 @@ public class PosterizeActivity extends ActionBarActivity {
             {
                 yStart = (int)(j * (int)(loopHeight));
 
-                //Bitmap newMap = Bitmap.createBitmap(bitmap, xStart, yStart, xEnd, yEnd);
-
                 // draw a line onto the canvas
                 canvas.drawLine(0, yStart, xEnd, yStart, p);
             }
