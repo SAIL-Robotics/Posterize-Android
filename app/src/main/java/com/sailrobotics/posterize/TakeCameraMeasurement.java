@@ -76,5 +76,8 @@ public class TakeCameraMeasurement extends Activity {
                 Log.e("IMAGE", selectedImage.getPath());
             }
         }
+        else if (resultCode == Activity.RESULT_CANCELED) {
+            finish();
+        }
     }
 }

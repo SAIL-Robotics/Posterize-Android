@@ -75,5 +75,9 @@ public class CameraActivity extends Activity {
                 Log.e("IMAGE", selectedImage.getPath());
             }
         }
+        else if (resultCode == Activity.RESULT_CANCELED) {
+            Intent homeScreenIntent = new Intent(CameraActivity.this,HomeScreenActivity.class);
+            startActivity(homeScreenIntent);
+        }
     }//onActivityResult
 }//CameraActivity
