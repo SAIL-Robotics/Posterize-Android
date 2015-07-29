@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Document;
@@ -105,7 +106,7 @@ public class PosterizeActivity extends ActionBarActivity {
                 imageDivision(oldWidth, oldHeight, totalA4Width, totalA4Height);
                 nextIntent = new Intent(PosterizeActivity.this, PosterSummaryActivity.class);
                 nextIntent.putExtra("pdfPath", FILE);
-                nextIntent.putExtra("sheets",  Math.ceil(totalA4Width) * Math.ceil(totalA4Height) + "");
+                nextIntent.putExtra("sheets", Math.ceil(totalA4Width) * Math.ceil(totalA4Height) + "");
                 nextIntent.putExtra("orientation", orientation + "");
                 startActivity(nextIntent);
             }
@@ -120,6 +121,11 @@ public class PosterizeActivity extends ActionBarActivity {
         totalA4Width = newWidth / a4Width;
         totalA4Height = newHeight / a4Height;
 
+        int totalPapers = (int)(Math.ceil(totalA4Width) * Math.ceil(totalA4Height));
+        int newTotalPapers;
+
+        Log.e("CutImage", totalA4Width +" "+ totalA4Height + " " + totalPapers);
+
         double diffWidth = totalA4Width - (int)totalA4Width;
         double diffHeight = totalA4Height - (int)totalA4Height;
 
@@ -127,32 +133,44 @@ public class PosterizeActivity extends ActionBarActivity {
         {
             Log.e("CutImage", "no height change");
         }
-        else if(diffHeight >= 0.4)
+        else if(diffHeight > 0.5)
         {
-            Log.e("CutImage", "height increase");
-            totalA4Height = Math.ceil(totalA4Height);
+            Log.e("CutImage", "No change in height");
         }
         else
         {
             Log.e("CutImage", "height decrease");
-            totalA4Height = Math.floor(totalA4Height);
+            totalA4Height = Math.floor(totalA4Height) - 0.001;
         }
 
         if(diffWidth == 0)
         {
             Log.e("CutImage", "no width change");
         }
-        else if(diffWidth >= 0.4)
+        else if(diffWidth > 0.5)
         {
-            Log.e("CutImage", "width increase");
-            totalA4Width = Math.ceil(totalA4Width);
+            Log.e("CutImage", "No change in weight");
         }
         else
         {
             Log.e("CutImage", "width decrease");
-            totalA4Width = Math.floor(totalA4Width);
+            totalA4Width = Math.floor(totalA4Width) - 0.001;
         }
 
+        newTotalPapers = (int)(Math.ceil(totalA4Width) * Math.ceil(totalA4Height));
+
+        Log.e("CutImage", totalA4Width +" "+ totalA4Height + " " + newTotalPapers);
+
+        if(totalPapers == newTotalPapers)
+        {
+            Toast.makeText(getApplication(), "Good to go, optimization not required!", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Toast.makeText(getApplication(), "You just saved "+ (totalPapers - newTotalPapers) + " papers", Toast.LENGTH_SHORT).show();
+        }
+
+        Log.e("CutImage", totalA4Width +" "+ totalA4Height);
         afterOptimize.setText(totalA4Width + "  " + totalA4Height);
         drawCutLine(oldWidth, oldHeight, totalA4Width, totalA4Height);
     }
@@ -263,7 +281,6 @@ public class PosterizeActivity extends ActionBarActivity {
             }
             document.close();
         }
-
         catch (Exception e)
         {
             Log.e("poster", e.getMessage());
