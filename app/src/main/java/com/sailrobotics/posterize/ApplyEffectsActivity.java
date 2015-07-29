@@ -155,14 +155,21 @@ public class ApplyEffectsActivity extends Activity {
 
                 nextIntent = new Intent(ApplyEffectsActivity.this, PosterMeasurementsActivity.class);
                 nextIntent.putExtra("filePath", file.getPath());
-                nextIntent.putExtra("bitmapWidth", editedBitmap.getWidth() + "");
-                nextIntent.putExtra("bitmapHeight", editedBitmap.getHeight() + "");
+                if(editedBitmap == null)
+                {
+                    nextIntent.putExtra("bitmapWidth", baseBitmap.getWidth() + "");
+                    nextIntent.putExtra("bitmapHeight", baseBitmap.getHeight() + "");
+                }
+                else
+                {
+                    nextIntent.putExtra("bitmapWidth", editedBitmap.getWidth() + "");
+                    nextIntent.putExtra("bitmapHeight", editedBitmap.getHeight() + "");
+                }
+
                 startActivity(nextIntent);
             }
         });
     }
-
-
 
     /** Create a File for saving an image*/
     private File savePictureAfterEffects(){
@@ -182,7 +189,6 @@ public class ApplyEffectsActivity extends Activity {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         File mediaFile;
         mediaFile = new File(mediaStorageDir.getPath() + File.separator + "afterEffect.png");
-
 
         try {
             OutputStream stream = new FileOutputStream(mediaFile);
