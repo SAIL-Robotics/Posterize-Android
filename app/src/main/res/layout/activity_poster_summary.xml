@@ -26,17 +26,6 @@
         android:layout_marginRight="15dp"
         />
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:id="@+id/nextButton"
-        android:background="@drawable/forward_arrow"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
