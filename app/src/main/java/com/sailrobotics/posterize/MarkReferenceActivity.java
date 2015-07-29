@@ -75,6 +75,16 @@ public class MarkReferenceActivity extends Activity {
                     return;
                 }
                 distance = plot.calculateDistance(known);
+                if (distance > 0) {
+                    SharedPreferences.Editor editor = mySharedpreferences.edit();
+                    editor.putString("Distance", distance + " ");
+                    editor.apply();
+                    Log.i("DISTANCE", " " + distance);
+                } else {
+                    Log.e("post", "Some error on placing points/distance calculation");
+                    return;
+                }
+                finish();
                 Toast.makeText(getApplication(), distance + "", Toast.LENGTH_SHORT).show();
             }
         });
@@ -86,7 +96,7 @@ public class MarkReferenceActivity extends Activity {
             }
         });
 
-        nextButton.setOnClickListener(new View.OnClickListener() {
+        /*nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (distance > 0) {
@@ -100,7 +110,7 @@ public class MarkReferenceActivity extends Activity {
                 }
                 finish();
             }
-        });
+        });*/
 
         redoButton.setOnClickListener(new View.OnClickListener() {
             @Override

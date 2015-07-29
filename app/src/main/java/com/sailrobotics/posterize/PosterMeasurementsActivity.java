@@ -148,12 +148,20 @@ public class PosterMeasurementsActivity extends Activity {
             public void onClick(View v) {
                 if(radioWidth.isChecked())
                 {
-                    width.setText(distance);
+                    double widthDouble= Math.round(Double.parseDouble(distance)*100)/100;
+                    width.setText(widthDouble+ "");
+                    posterHeight = aspectRatio(bitmapWidth, bitmapHeight, Double.parseDouble(distance), true);
+                    double heightDouble= Math.round(posterHeight*100)/100;
+                    height.setText(heightDouble+ "");
                     dialog.dismiss();
                 }
                 else if(radioHeight.isChecked())
                 {
-                    height.setText(distance);
+                    double heightDouble= Math.round(Double.parseDouble(distance)*100)/100;
+                    height.setText(heightDouble+ "");
+                    posterWidth = aspectRatio(bitmapWidth, bitmapHeight, Double.parseDouble(distance), false);
+                    double widthDouble = Math.round(posterWidth*100)/100;
+                    width.setText(widthDouble+"");
                     dialog.dismiss();
                 }
             }

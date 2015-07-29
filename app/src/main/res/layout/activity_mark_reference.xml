@@ -8,69 +8,48 @@
     <FrameLayout
         android:id="@+id/posterImageView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="480dp"
         android:layout_gravity="center"
-        android:layout_weight="1"
-        android:layout_below="@+id/previousButton"
-        android:layout_above="@+id/proceedButton"
         android:layout_alignParentStart="true"
         android:padding="5dp"/>
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/previousButton"
-        android:background="@drawable/backward_arrow"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/nextButton"
-        android:background="@drawable/forward_arrow"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Calc"
-        android:id="@+id/proceedButton"
-        android:layout_marginStart="34dp"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/previousButton" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/knownLength"
         android:inputType="numberDecimal"
+        android:hint="Enter measurement"
+        android:textColorHint="@android:color/white"
         android:ems="10"
-        android:layout_alignParentBottom="true"
-        android:textColor="@android:color/white"
-        android:layout_toStartOf="@+id/proceedButton" />
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/posterImageView"
+        android:textColor="@android:color/white"/>
+
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Reset"
+        android:text="Proceed"
+        android:id="@+id/proceedButton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset Markers"
         android:id="@+id/reset"
-        android:layout_alignParentBottom="true"
-        android:layout_toEndOf="@+id/proceedButton" />
+        android:layout_below="@+id/knownLength"
+        android:layout_alignParentLeft="true"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Take Picture"
+        android:text="Retake Picture"
         android:id="@+id/redo"
-        android:layout_alignTop="@+id/reset"
-        android:layout_toEndOf="@+id/reset" />
+        android:layout_below="@+id/knownLength"
+        android:layout_alignParentRight="true"/>
 
 
 </RelativeLayout>
