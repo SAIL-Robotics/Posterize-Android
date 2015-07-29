@@ -28,57 +28,79 @@
         android:layout_marginRight="15dp"
         />
 
-    <EditText
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="width"
-        android:textColorHint="@android:color/white"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/editWidth"
-        android:layout_marginTop="75dp"
-        android:layout_below="@+id/previousButton"
-        android:layout_alignStart="@+id/editHeight"
-        android:textColor="@android:color/white" />
+        android:layout_below="@+id/nextButton"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/first_relative"
+        android:paddingTop="120dp"
+        android:paddingBottom="20dp">
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Enter width"
+            android:textColorHint="@android:color/white"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/editWidth"
+            android:textColor="@android:color/white"/>
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Set Width "
+            android:id="@+id/aspectWidth"
+            android:layout_alignRight="@+id/editWidth"
+            android:layout_centerHorizontal="true"/>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:hint="height"
-        android:textColorHint="@android:color/white"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/editHeight"
-        android:textColor="@android:color/white"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+    </RelativeLayout>
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
+    <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Aspect Ratio"
-        android:id="@+id/aspectHeight"
-        android:layout_below="@+id/editHeight"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/first_relative">
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="Enter height"
+            android:textColorHint="@android:color/white"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/editHeight"
+            android:textColor="@android:color/white"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set Height"
+            android:id="@+id/aspectHeight"
+            android:layout_alignRight="@+id/editHeight"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="220dp"
         android:layout_height="wrap_content"
-        android:text="Aspect Ratio"
-        android:id="@+id/aspectWidth"
-        android:layout_below="@+id/editWidth"
-        android:layout_centerHorizontal="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Invoke Camera"
-        android:id="@+id/invokeCameraButton"
-        android:layout_marginBottom="64dp"
+        android:layout_marginBottom="85dp"
         android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/aspectHeight" />
+        android:layout_centerHorizontal="true">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Camera Ruler"
+            android:id="@+id/invokeCameraButton"
+            android:layout_alignParentLeft="true"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="\?"
+            android:id="@+id/instructionButton"
+            android:layout_alignParentRight="true" />
+    </RelativeLayout>
 
 </RelativeLayout>
 
