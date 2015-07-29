@@ -28,6 +28,8 @@ public class PosterMeasurementsActivity extends Activity {
     Button takePictureButton, aspectWidth, aspectHeight;
     SharedPreferences mySharedpreferences;
     String distance;
+    String posterHeightString;
+    String posterWidthString;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,20 +55,33 @@ public class PosterMeasurementsActivity extends Activity {
         aspectWidth.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                posterWidth = Double.parseDouble(width.getText().toString());
-                posterHeight = aspectRatio(bitmapWidth, bitmapHeight, posterWidth, true);
-                posterHeight = (double) Math.round(posterHeight * 100) / 100;   //two decimal places
-                height.setText(posterHeight.toString());
+                posterWidthString = width.getText().toString();
+                if(posterWidthString.equals("")) {
+                    Toast.makeText(getApplicationContext(),"Enter width",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    posterWidth = Double.parseDouble(width.getText().toString());
+                    posterHeight = aspectRatio(bitmapWidth, bitmapHeight, posterWidth, true);
+                    posterHeight = (double) Math.round(posterHeight * 100) / 100;   //two decimal places
+                    height.setText(posterHeight.toString());
+                }
+
             }
         });
 
         aspectHeight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                posterHeight = Double.parseDouble(height.getText().toString());
-                posterWidth = aspectRatio(bitmapWidth, bitmapHeight, posterHeight, false);
-                posterWidth = (double) Math.round(posterWidth * 100) / 100;     //two decimal places
-                width.setText(posterWidth.toString());
+                posterHeightString = height.getText().toString();
+                if(posterHeightString.equals("")) {
+                    Toast.makeText(getApplicationContext(),"Enter height",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    posterHeight = Double.parseDouble(height.getText().toString());
+                    posterWidth = aspectRatio(bitmapWidth, bitmapHeight, posterHeight, false);
+                    posterWidth = (double) Math.round(posterWidth * 100) / 100;     //two decimal places
+                    width.setText(posterWidth.toString());
+                }
             }
         });
 
@@ -89,11 +104,20 @@ public class PosterMeasurementsActivity extends Activity {
         nextActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nextIntent = new Intent(PosterMeasurementsActivity.this, PosterizeActivity.class);
-                nextIntent.putExtra("filePath", path);
-                nextIntent.putExtra("bitmapWidth", posterWidth + "");
-                nextIntent.putExtra("bitmapHeight", posterHeight + "");
-                startActivity(nextIntent);
+                posterWidthString = width.getText().toString();
+                posterHeightString = height.getText().toString();
+                if (posterHeightString.equals("") && posterWidthString.equals("")) {
+                    Toast.makeText(getApplicationContext(),"Enter poster dimensions",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    posterWidth = Double.parseDouble(width.getText().toString());
+                    posterHeight = Double.parseDouble(height.getText().toString());
+                    nextIntent = new Intent(PosterMeasurementsActivity.this, PosterizeActivity.class);
+                    nextIntent.putExtra("filePath", path);
+                    nextIntent.putExtra("bitmapWidth", posterWidth + "");
+                    nextIntent.putExtra("bitmapHeight", posterHeight + "");
+                    startActivity(nextIntent);
+                }
             }
         });
     }
@@ -158,5 +182,12 @@ public class PosterMeasurementsActivity extends Activity {
         SharedPreferences.Editor editor = mySharedpreferences.edit();
         editor.clear();
         editor.commit();
+        posterWidth = 0.0;
+        posterHeight = 0.0;
+        posterWidthString = null;
+        posterHeightString = null;
+        width.setText("");
+        height.setText("");
+        width.isFocused();
     }
 }
