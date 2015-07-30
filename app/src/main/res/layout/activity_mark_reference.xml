@@ -21,9 +21,9 @@
         android:hint="Enter measurement"
         android:textColorHint="@android:color/white"
         android:ems="10"
-        android:layout_centerHorizontal="true"
         android:layout_below="@+id/posterImageView"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/white"
+        android:layout_toStartOf="@+id/redo" />
 
 
     <Button
@@ -50,6 +50,14 @@
         android:id="@+id/redo"
         android:layout_below="@+id/knownLength"
         android:layout_alignParentRight="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calulate"
+        android:id="@+id/calcLength"
+        android:layout_above="@+id/redo"
+        android:layout_alignParentEnd="true" />
 
 
 </RelativeLayout>

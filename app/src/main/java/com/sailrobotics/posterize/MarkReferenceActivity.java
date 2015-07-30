@@ -1,7 +1,6 @@
 package com.sailrobotics.posterize;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -22,7 +21,7 @@ import java.io.File;
 public class MarkReferenceActivity extends Activity {
 
     FrameLayout plotImageView;
-    Button doneButton, resetButton, redoButton;
+    Button doneButton, resetButton, redoButton, calcLength;
     ImageButton nextButton;
     PlotPoint plot;
     SharedPreferences mySharedpreferences;
@@ -39,6 +38,7 @@ public class MarkReferenceActivity extends Activity {
         resetButton = (Button)findViewById(R.id.reset);
         redoButton = (Button)findViewById(R.id.redo);
         nextButton = (ImageButton)findViewById(R.id.nextButton);
+        calcLength = (Button)findViewById(R.id.calcLength);
         //mySharedpreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
         mySharedpreferences = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -111,6 +111,31 @@ public class MarkReferenceActivity extends Activity {
                 finish();
             }
         });*/
+
+        calcLength.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText knownLength = (EditText)findViewById(R.id.knownLength);
+                double known = 0d;
+                if(knownLength.getText().length() != 0)
+                {
+                    known = Double.parseDouble(knownLength.getText().toString());
+                }
+                else
+                {
+                    Log.e("post", "Fill the textbox with some value");
+                    return;
+                }
+                distance = plot.calculateDistance(known);
+                if (distance > 0) {
+                    Log.i("DISTANCE", " " + distance);
+                    Toast.makeText(getApplication(), distance + "", Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.e("post", "Some error on placing points/distance calculation");
+                    return;
+                }
+            }
+        });
 
         redoButton.setOnClickListener(new View.OnClickListener() {
             @Override

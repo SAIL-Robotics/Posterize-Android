@@ -2,18 +2,19 @@ package com.sailrobotics.posterize;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
+
+import java.text.DecimalFormat;
 
 /**
  * Created by arjuns on 6/28/2015.
@@ -31,10 +32,14 @@ public class PosterMeasurementsActivity extends Activity {
     String posterHeightString;
     String posterWidthString;
 
+    DecimalFormat dec;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_poster_measurements);
+
+        dec = new DecimalFormat("#.##");
 
         path = getIntent().getStringExtra("filePath");
         bitmapWidth = Double.parseDouble(getIntent().getStringExtra("bitmapWidth"));
@@ -62,7 +67,7 @@ public class PosterMeasurementsActivity extends Activity {
                 else {
                     posterWidth = Double.parseDouble(width.getText().toString());
                     posterHeight = aspectRatio(bitmapWidth, bitmapHeight, posterWidth, true);
-                    posterHeight = (double) Math.round(posterHeight * 100) / 100;   //two decimal places
+                    posterHeight = Double.valueOf(dec.format(posterHeight));   //two decimal places
                     height.setText(posterHeight.toString());
                 }
 
@@ -79,7 +84,7 @@ public class PosterMeasurementsActivity extends Activity {
                 else {
                     posterHeight = Double.parseDouble(height.getText().toString());
                     posterWidth = aspectRatio(bitmapWidth, bitmapHeight, posterHeight, false);
-                    posterWidth = (double) Math.round(posterWidth * 100) / 100;     //two decimal places
+                    posterWidth = Double.valueOf(dec.format(posterWidth));     //two decimal places
                     width.setText(posterWidth.toString());
                 }
             }
@@ -148,19 +153,19 @@ public class PosterMeasurementsActivity extends Activity {
             public void onClick(View v) {
                 if(radioWidth.isChecked())
                 {
-                    double widthDouble= Math.round(Double.parseDouble(distance)*100)/100;
+                    double widthDouble= Double.valueOf(dec.format(Double.parseDouble(distance)));
                     width.setText(widthDouble+ "");
                     posterHeight = aspectRatio(bitmapWidth, bitmapHeight, Double.parseDouble(distance), true);
-                    double heightDouble= Math.round(posterHeight*100)/100;
+                    double heightDouble= Double.valueOf(dec.format(posterHeight));
                     height.setText(heightDouble+ "");
                     dialog.dismiss();
                 }
                 else if(radioHeight.isChecked())
                 {
-                    double heightDouble= Math.round(Double.parseDouble(distance)*100)/100;
+                    double heightDouble= Double.valueOf(dec.format(Double.parseDouble(distance)));
                     height.setText(heightDouble+ "");
                     posterWidth = aspectRatio(bitmapWidth, bitmapHeight, Double.parseDouble(distance), false);
-                    double widthDouble = Math.round(posterWidth*100)/100;
+                    double widthDouble = Double.valueOf(dec.format(posterWidth));
                     width.setText(widthDouble+"");
                     dialog.dismiss();
                 }
@@ -179,9 +184,9 @@ public class PosterMeasurementsActivity extends Activity {
         //Toast.makeText(getApplicationContext(),""+distance, Toast.LENGTH_SHORT).show();
         if(distance.length()!=0)
         {
+            Log.e("CutImage", distance);
             showAlertDialog();
         }
-
     }
 
     @Override
