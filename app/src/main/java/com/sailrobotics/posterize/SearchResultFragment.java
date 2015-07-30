@@ -1,27 +1,34 @@
 package com.sailrobotics.posterize;
 
-import android.app.Activity;
+import android.app.Fragment;
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.app.Fragment;
+import android.os.Environment;
 import android.util.Log;
 import android.util.LruCache;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.lang.ref.WeakReference;
+import java.net.URL;
 import java.util.ArrayList;
 
 
@@ -34,6 +41,8 @@ public class SearchResultFragment extends Fragment {
 
     private LruCache<String, Bitmap> mMemoryCache;
     public ArrayList<PhotoModel> photos;
+    ProgressDialog pDialog;
+    Bitmap bitmap;
 
     public SearchResultFragment() {
 
@@ -67,6 +76,17 @@ public class SearchResultFragment extends Fragment {
         ResultAdapter resultAdapter = new ResultAdapter();
         result_list.setAdapter(resultAdapter);
 
+        result_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> av, View view, int position, long l) {
+                PhotoModel photo = photos.get(position);
+                String urls = "https://farm" + photo.getFarm_id() + ".static.flickr.com/" +
+                        photo.getServer_id() + "/" + photo.getPhoto_id() + "_" + photo.getSecret() + "_"
+                        + "b.jpg";
+
+                new LoadImage().execute(urls);
+                Log.e("CutImage", "myPos " + position + "  " + urls);
+            }
+        });
         return v;
     }
 
@@ -252,6 +272,71 @@ public class SearchResultFragment extends Fragment {
     private Bitmap getBitmapFromMemoryCache(String key) {
 
         return mMemoryCache.get(key);
+    }
+
+    private class LoadImage extends AsyncTask<String, String, Bitmap> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            pDialog = new ProgressDialog(getActivity());
+            pDialog.setMessage("Downloading Image ....");
+            pDialog.show();
+
+        }
+        protected Bitmap doInBackground(String... args) {
+            try {
+                bitmap = BitmapFactory.decodeStream((InputStream)new URL(args[0]).getContent());
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return bitmap;
+        }
+
+        protected void onPostExecute(Bitmap image) {
+
+            if(image != null){
+                File mediaStorageDir = new File(Environment.getExternalStoragePublicDirectory(
+                        Environment.DIRECTORY_PICTURES), "Posterize");
+
+                // Create the storage directory if it does not exist
+                if (! mediaStorageDir.exists()){
+                    if (! mediaStorageDir.mkdirs()){
+                        Log.d("MyCameraApp", "failed to create directory");
+                    }
+                }
+
+                // Create a media file name
+                File mediaFile;
+                mediaFile = new File(mediaStorageDir.getPath() + File.separator + "fromFlickr.png");
+                FileOutputStream out = null;
+                try {
+                    out = new FileOutputStream(mediaFile);
+                    image.compress(Bitmap.CompressFormat.PNG, 100, out); // bmp is your Bitmap instance
+                    // PNG is a lossless format, the compression factor (100) is ignored
+                } catch (Exception e) {
+                    e.printStackTrace();
+                } finally {
+                    try {
+                        if (out != null) {
+                            out.close();
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+                Intent cropImageIntent = new Intent(getActivity(), CropImageActivity.class);
+                cropImageIntent.putExtra("ImagePATH", mediaFile.getPath());
+                startActivity(cropImageIntent);
+                Log.e("IMAGE", mediaFile.getPath());
+                pDialog.dismiss();
+            }else{
+
+                pDialog.dismiss();
+                Toast.makeText(getActivity(), "Image Does Not exist or Network Error", Toast.LENGTH_SHORT).show();
+
+            }
+        }
     }
 
 }

@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30sp"
             android:layout_weight="1"
-            android:hint="Search" />
+            android:hint="Search Image" />
 
         <Button
             android:layout_width="wrap_content"
