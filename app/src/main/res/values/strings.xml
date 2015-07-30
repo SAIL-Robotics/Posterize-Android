@@ -6,4 +6,8 @@
     <string name="title_activity_gallery">GalleryActivity</string>
     <string name="title_activity_posterize">PosterizeActivity</string>
     <string name="title_activity_poster_summary">PosterSummaryActivity</string>
+    <string name="title_activity_flickr">FlickrActivity</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

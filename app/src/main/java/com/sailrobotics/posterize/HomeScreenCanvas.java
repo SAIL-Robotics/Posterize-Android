@@ -126,6 +126,8 @@ public class HomeScreenCanvas extends ImageView implements View.OnTouchListener 
                 currentBitmap= BitmapFactory.decodeResource(getResources(), R.drawable.search_fade);
                 Bitmap scaledBitmap=resizeImage(currentBitmap);
                 c.drawBitmap(scaledBitmap, x - scaledBitmap.getWidth() / 2, y - scaledBitmap.getHeight() / 2, null);
+                intent = new Intent(myContext,FlickrActivity.class);
+                myContext.startActivity(intent);
             }
 
             //Camera icon
