@@ -33,7 +33,7 @@ public class HomeScreenCanvas extends ImageView implements View.OnTouchListener 
         super(context, myAttributeSet);
         myContext = context;
         myhandler = new Handler();
-        b1 = (BitmapDrawable) getContext().getResources().getDrawable(R.drawable.gallery_fade,null);
+        b1 = (BitmapDrawable) getContext().getResources().getDrawable(R.drawable.flickr_fade,null);
         b2 = (BitmapDrawable) getContext().getResources().getDrawable(R.drawable.search_fade,null);
         b3 = (BitmapDrawable) getContext().getResources().getDrawable(R.drawable.instagram_fade,null);
 
@@ -123,7 +123,7 @@ public class HomeScreenCanvas extends ImageView implements View.OnTouchListener 
                 x = 276 * rx;
                 y = 363 * ry;
                 this.setVisibility(View.VISIBLE);
-                currentBitmap= BitmapFactory.decodeResource(getResources(), R.drawable.search_fade);
+                currentBitmap= BitmapFactory.decodeResource(getResources(), R.drawable.flickr_fade);
                 Bitmap scaledBitmap=resizeImage(currentBitmap);
                 c.drawBitmap(scaledBitmap, x - scaledBitmap.getWidth() / 2, y - scaledBitmap.getHeight() / 2, null);
                 intent = new Intent(myContext,FlickrActivity.class);
