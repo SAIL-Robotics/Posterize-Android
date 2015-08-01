@@ -30,12 +30,16 @@ public class GoogleDriveActivity extends Activity implements GoogleApiClient.Con
     File myfile;
     static final int RESOLVE_CONNECTION_REQUEST_CODE = 1;
     static final int REQUEST_CODE_CREATOR = 2;
-    private static String filePath = "mnt/sdcard/FirstPdf3.pdf";
+    //private static String filePath = "mnt/sdcard/FirstPdf3.pdf";
+    private static String filePath, fileName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_poster_summary);
+        Intent intent = getIntent();
+        filePath = intent.getStringExtra("FilePath");
+        fileName = intent.getStringExtra("FileName");
         uploadToDrive();
     }
 
@@ -92,7 +96,7 @@ public class GoogleDriveActivity extends Activity implements GoogleApiClient.Con
                         }
                         // Create the initial metadata - MIME type and title.
                         MetadataChangeSet metadataChangeSet = new MetadataChangeSet.Builder()
-                                .setMimeType("application/pdf").setTitle("test.pdf").build();
+                                .setMimeType("application/pdf").setTitle(fileName).build();
 
                         // Create an intent for the file chooser, and start it.
                         IntentSender intentSender = Drive.DriveApi

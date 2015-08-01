@@ -23,7 +23,7 @@ public class PosterSummaryActivity extends Activity {
     TextView imagePath,numberOfSheets,orientationType;
     ImageButton googleDriveButton,facebookButton,twitterButton,instagramButton;
     String pdfPath,orientation;
-    String sheetsCount;
+    String sheetsCount,fileName;
     Button openPdfButton;
 
     @Override
@@ -42,6 +42,7 @@ public class PosterSummaryActivity extends Activity {
 
         Intent intent = getIntent();
         pdfPath = intent.getStringExtra("pdfPath");
+        fileName = intent.getStringExtra("FileName");
         sheetsCount = intent.getStringExtra("sheets");
         orientation = intent.getStringExtra("orientation");
 
@@ -55,6 +56,8 @@ public class PosterSummaryActivity extends Activity {
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Google Drive", Toast.LENGTH_SHORT).show();
                 Intent googleDriveActivityIntent = new Intent(PosterSummaryActivity.this,GoogleDriveActivity.class);
+                googleDriveActivityIntent.putExtra("FilePath",pdfPath);
+                googleDriveActivityIntent.putExtra("FileName",fileName);
                 startActivity(googleDriveActivityIntent);
             }
         });

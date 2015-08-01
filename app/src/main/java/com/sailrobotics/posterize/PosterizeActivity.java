@@ -31,6 +31,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 public class PosterizeActivity extends ActionBarActivity {
@@ -41,7 +43,7 @@ public class PosterizeActivity extends ActionBarActivity {
     ImageView imageView;
     TextView beforeOptimize, afterOptimize;
     Bitmap bitmap;
-    private static String FILE = "mnt/sdcard/SamplePdf.pdf";
+    private static String FILEPATH,FILENAME;
     String orientation = "portrait";
     private static double newHeight;
     private static double newWidth;
@@ -100,9 +102,14 @@ public class PosterizeActivity extends ActionBarActivity {
         nextActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                SimpleDateFormat myDateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
+                String currentTime = myDateFormat.format(new Date());
+                FILEPATH = "mnt/sdcard/Poster_"+currentTime+".pdf";
+                FILENAME = "Poster_"+currentTime+".pdf";
                 imageDivision(oldWidth, oldHeight, totalA4Width, totalA4Height);
                 nextIntent = new Intent(PosterizeActivity.this, PosterSummaryActivity.class);
-                nextIntent.putExtra("pdfPath", FILE);
+                nextIntent.putExtra("pdfPath", FILEPATH);
+                nextIntent.putExtra("FileName",FILENAME);
                 nextIntent.putExtra("sheets", Math.ceil(totalA4Width) * Math.ceil(totalA4Height) + "");
                 nextIntent.putExtra("orientation", orientation + "");
                 startActivity(nextIntent);
@@ -236,7 +243,7 @@ public class PosterizeActivity extends ActionBarActivity {
         try
         {
             Document document = new Document(PageSize.A4);
-            PdfWriter.getInstance(document, new FileOutputStream(FILE));
+            PdfWriter.getInstance(document, new FileOutputStream(FILEPATH));
             document.open();
 
             int xStart = 0, yStart = 0, xEnd = (int)(loopWidth), yEnd = (int)(loopHeight);
