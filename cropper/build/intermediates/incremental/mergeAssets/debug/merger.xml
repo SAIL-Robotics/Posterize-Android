@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="H:\Android\Posterize-Android\cropper\src\main\assets"/></dataSet><dataSet config="debug"><source path="H:\Android\Posterize-Android\cropper\src\debug\assets"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="H:\Android\Posterize-New\Posterize-Android\cropper\src\main\assets"/></dataSet><dataSet config="debug"><source path="H:\Android\Posterize-New\Posterize-Android\cropper\src\debug\assets"/></dataSet></merger>

@@ -1,10 +1,12 @@
 package com.sailrobotics.posterize;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -16,6 +18,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -29,6 +32,8 @@ public class ApplyEffectsActivity extends Activity {
     ImageView baseImageView;
     Bitmap baseBitmap, thumbnailBitmap;
     Bitmap editedBitmap;
+    ArrayList<Bitmap> bitmapArray = new ArrayList<Bitmap>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,15 +60,9 @@ public class ApplyEffectsActivity extends Activity {
         myThumbnailOptions.inSampleSize = 7;
         Bitmap thumbnailBitmap = BitmapFactory.decodeFile(path, myThumbnailOptions);
 
-        ImageEffects horizontalScrollObject = new ImageEffects();
-
         noneImageButton.setImageBitmap(baseBitmap);
-        invertImageButton.setImageBitmap(horizontalScrollObject.doInvert(thumbnailBitmap));
-        sepiaImageButton.setImageBitmap(horizontalScrollObject.doSepia(thumbnailBitmap));
-        greyscaleImageButton.setImageBitmap(horizontalScrollObject.doGreyscale(thumbnailBitmap));
-        boostRedImageButton.setImageBitmap(horizontalScrollObject.doColourBoost(thumbnailBitmap,1,5));
-        boostGreenImageButton.setImageBitmap(horizontalScrollObject.doColourBoost(thumbnailBitmap,2,1));
-        boostBlueImageButton.setImageBitmap(horizontalScrollObject.doColourBoost(thumbnailBitmap,3,2));
+        ApplyEffectsToButon effect = new ApplyEffectsToButon();
+        effect.execute();
 
         noneImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -189,6 +188,44 @@ public class ApplyEffectsActivity extends Activity {
 
         }
         return mediaFile;
+    }
+
+    private class ApplyEffectsToButon extends AsyncTask<Void, Void, Void> {
+        ProgressDialog progressDialog;
+        //declare other objects as per your need
+        @Override
+        protected void onPreExecute()
+        {
+            progressDialog= ProgressDialog.show(ApplyEffectsActivity.this, "Posterize","Loading Page...", true);
+
+            //do initialization of required objects objects here
+        };
+        @Override
+        protected Void doInBackground(Void... params)
+        {
+            ImageEffects horizontalScrollObject = new ImageEffects();
+
+            bitmapArray.add(horizontalScrollObject.doInvert(thumbnailBitmap));
+            bitmapArray.add(horizontalScrollObject.doSepia(thumbnailBitmap));
+            bitmapArray.add(horizontalScrollObject.doGreyscale(thumbnailBitmap));
+            bitmapArray.add(horizontalScrollObject.doColourBoost(thumbnailBitmap, 1, 5));
+            bitmapArray.add(horizontalScrollObject.doColourBoost(thumbnailBitmap, 2, 1));
+            bitmapArray.add(horizontalScrollObject.doColourBoost(thumbnailBitmap, 3, 2));
+
+            return null;
+        }
+        @Override
+        protected void onPostExecute(Void result)
+        {
+            invertImageButton.setImageBitmap(bitmapArray.get(0));
+            sepiaImageButton.setImageBitmap(bitmapArray.get(1));
+            greyscaleImageButton.setImageBitmap(bitmapArray.get(2));
+            boostRedImageButton.setImageBitmap(bitmapArray.get(3));
+            boostGreenImageButton.setImageBitmap(bitmapArray.get(4));
+            boostBlueImageButton.setImageBitmap(bitmapArray.get(5));
+            super.onPostExecute(result);
+            progressDialog.dismiss();
+        };
     }
 
 }
