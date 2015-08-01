@@ -33,10 +33,6 @@ public class HomeScreenCanvas extends ImageView implements View.OnTouchListener 
         super(context, myAttributeSet);
         myContext = context;
         myhandler = new Handler();
-        b1 = (BitmapDrawable) getContext().getResources().getDrawable(R.drawable.flickr_fade,null);
-        b2 = (BitmapDrawable) getContext().getResources().getDrawable(R.drawable.search_fade,null);
-        b3 = (BitmapDrawable) getContext().getResources().getDrawable(R.drawable.instagram_fade,null);
-
     }
 
 
@@ -103,20 +99,22 @@ public class HomeScreenCanvas extends ImageView implements View.OnTouchListener 
 
 
             }
-            //Instagram icon
+            //Camera icon
             if ( x>40*rx && x<150*rx && y>360*ry && y<454*ry)
             {
                 final Bitmap currentBitmap;
-                x = 80 * rx;
-                y = 362 * ry;
+                x = 85 * rx;
+                y = 361 * ry;
                 this.setVisibility(View.VISIBLE);
-                currentBitmap= BitmapFactory.decodeResource(getResources(), R.drawable.instagram_fade);
+                currentBitmap= BitmapFactory.decodeResource(getResources(), R.drawable.camera_fade);
                 Bitmap scaledBitmap=resizeImage(currentBitmap);
                 c.drawBitmap(scaledBitmap, x - scaledBitmap.getWidth() / 2, y - scaledBitmap.getHeight() / 2, null);
+                intent = new Intent(myContext,CameraActivity.class);
+                myContext.startActivity(intent);
 
             }
 
-            //WebSearch icon
+            //Flickr icon
             if ( (x>250*rx && x<350*rx && y>360*ry && y<454*ry)||(x>200*rx && x<350*rx && y>400*ry && y<454*ry))
             {
                 final Bitmap currentBitmap;
@@ -130,7 +128,7 @@ public class HomeScreenCanvas extends ImageView implements View.OnTouchListener 
                 myContext.startActivity(intent);
             }
 
-            //Camera icon
+            /*//Camera icon
             if ( x>150*rx && x<250*rx && y>494*ry && y<600*ry )
             {
                 //Adding shadow effect on press
@@ -143,7 +141,7 @@ public class HomeScreenCanvas extends ImageView implements View.OnTouchListener 
                 c.drawBitmap(scaledBitmap, x - scaledBitmap.getWidth() / 2, y - scaledBitmap.getHeight() / 2, null);
                 intent = new Intent(myContext,CameraActivity.class);
                 myContext.startActivity(intent);
-            }
+            }*/
 
             /*postDelayed is added if the user taps continuously. In that case, the canvas must be refreshed within a short span of time. postDelayed
             * lets the handler object remember this event and execute within the time mentioned, that is, 150ms. If the user taps the screen within 150ms,
