@@ -15,17 +15,6 @@
         android:layout_above="@+id/optimizeButton"
         android:layout_below="@+id/previousButton" />
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:id="@+id/previousButton"
-        android:background="@drawable/backward_arrow"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -38,7 +27,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:padding="20dp">
+            android:padding="20dp"
+            android:layout_marginTop="30dp">
             <TextView android:text="Number of pages :"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

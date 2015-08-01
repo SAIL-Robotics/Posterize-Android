@@ -20,7 +20,7 @@ import java.text.DecimalFormat;
  * Created by arjuns on 6/28/2015.
  */
 public class PosterMeasurementsActivity extends Activity {
-    ImageButton previousActivityButton, nextActivityButton;
+    ImageButton nextActivityButton;
     Intent nextIntent, previousIntent;
     String path;
     Double bitmapWidth, bitmapHeight;
@@ -45,8 +45,6 @@ public class PosterMeasurementsActivity extends Activity {
         bitmapWidth = Double.parseDouble(getIntent().getStringExtra("bitmapWidth"));
         bitmapHeight = Double.parseDouble(getIntent().getStringExtra("bitmapHeight"));
 
-
-        previousActivityButton = (ImageButton) findViewById(R.id.previousButton);
         nextActivityButton = (ImageButton) findViewById(R.id.nextButton);
         aspectWidth = (Button) findViewById(R.id.aspectWidth);
         aspectHeight = (Button) findViewById(R.id.aspectHeight);
@@ -95,14 +93,6 @@ public class PosterMeasurementsActivity extends Activity {
             public void onClick(View v) {
                 Intent invokeCameraIntent = new Intent(PosterMeasurementsActivity.this, TakeCameraMeasurement.class);
                 startActivity(invokeCameraIntent);
-            }
-        });
-
-        previousActivityButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                previousIntent = new Intent(PosterMeasurementsActivity.this, CropImageActivity.class);
-                startActivity(previousIntent);
             }
         });
 

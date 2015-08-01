@@ -35,8 +35,6 @@ public class CropImageActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crop_image);
-
-        previousActivityButton = (ImageButton)findViewById(R.id.previousButtonCrop);
         nextActivityButton = (ImageButton)findViewById(R.id.nextButtonCrop);
 
         cropImageView = (CropImageView) findViewById(R.id.imgView);
@@ -63,16 +61,6 @@ public class CropImageActivity extends Activity {
                     Log.e("crop after - pixel", bitmap.getWidth() + " " + bitmap.getHeight());
                     Log.e("crop after - cm", heightCM + " " + widthCM);
                     Log.e("crop - density", bitmap.getDensity() + "");
-
-                   /* bitmap.setDensity(10);
-                    imgDensity = bitmap.getDensity();
-                    heightCM = (bitmap.getHeight()) / imgDensity;
-                    widthCM = (bitmap.getWidth()) / imgDensity;
-
-                    Log.e("1 crop after - pixel", bitmap.getHeight() + " " + bitmap.getWidth());
-                    Log.e("1 crop after - cm", heightCM + " " + widthCM);
-                    Log.e("1 crop  - density", bitmap.getDensity() + "");*/
-                    //size.setText(bitmap.getWidth() + " " + bitmap.getHeight());
                 }
                 catch (Exception e)
                 {
@@ -109,10 +97,6 @@ public class CropImageActivity extends Activity {
                 Log.e("Post", "asd");
                 File file = savePictureAfterCrop();
 
-                /*nextIntent = new Intent(CropImageActivity.this,PosterizeActivity.class);
-                nextIntent.putExtra("filePath", file.getPath());
-                startActivity(nextIntent);*/
-
                 nextIntent = new Intent(CropImageActivity.this,ApplyEffectsActivity.class);
                 nextIntent.putExtra("filePath", file.getPath());
                 Log.e("CutImage", file.getPath());
@@ -130,7 +114,7 @@ public class CropImageActivity extends Activity {
         // Create the storage directory if it does not exist
         if (! mediaStorageDir.exists()){
             if (! mediaStorageDir.mkdirs()){
-                Log.d("MyCameraApp", "failed to create directory");
+                Log.d("Posterize", "failed to create directory");
                 return null;
             }
         }
@@ -160,5 +144,13 @@ public class CropImageActivity extends Activity {
     @Override
     public void onResume() {
         super.onResume();
+        Bundle extras = getIntent().getExtras();
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent homescreenIntent = new Intent(CropImageActivity.this,HomeScreenActivity.class);
+        startActivity(homescreenIntent);
+    }
+
 }

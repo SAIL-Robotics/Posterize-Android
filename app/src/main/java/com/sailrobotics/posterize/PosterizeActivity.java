@@ -34,7 +34,7 @@ import java.net.MalformedURLException;
 
 
 public class PosterizeActivity extends ActionBarActivity {
-    ImageButton previousActivityButton, nextActivityButton;
+    ImageButton nextActivityButton;
     Intent nextIntent, previousIntent;
     private static int RESULT_LOAD_IMAGE = 1;
     static Image image;
@@ -63,11 +63,8 @@ public class PosterizeActivity extends ActionBarActivity {
         newWidth = Double.parseDouble(getIntent().getStringExtra("bitmapWidth"));
         newHeight = Double.parseDouble(getIntent().getStringExtra("bitmapHeight"));
 
-        previousActivityButton = (ImageButton)findViewById(R.id.previousButton);
         nextActivityButton = (ImageButton)findViewById(R.id.nextButton);
         imageView = (ImageView) findViewById(R.id.posterImageView);
-        beforeOptimize = (TextView) findViewById(R.id.beforeOptimize);
-        afterOptimize = (TextView) findViewById(R.id.afterOptimize);
 
         imageView.setImageURI(Uri.parse(path));
         bitmap = BitmapFactory.decodeFile(path);
@@ -86,7 +83,7 @@ public class PosterizeActivity extends ActionBarActivity {
         totalA4Width = newWidth / a4Width;
         totalA4Height = newHeight / a4Height;
 
-        beforeOptimize.setText("Before Optimization \n " + Math.ceil(totalA4Width) * Math.ceil(totalA4Height));
+        //beforeOptimize.setText("Before Optimization \n " + Math.ceil(totalA4Width) * Math.ceil(totalA4Height));
 
         drawCutLine(oldWidth, oldHeight, totalA4Width, totalA4Height);
 
@@ -171,7 +168,7 @@ public class PosterizeActivity extends ActionBarActivity {
         }
 
         Log.e("CutImage", totalA4Width +" "+ totalA4Height);
-        afterOptimize.setText(totalA4Width + "  " + totalA4Height);
+        //afterOptimize.setText(totalA4Width + "  " + totalA4Height);
         drawCutLine(oldWidth, oldHeight, totalA4Width, totalA4Height);
     }
 

@@ -13,18 +13,7 @@
         android:layout_gravity="center"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/optimizeButton"
-        android:layout_below="@+id/previousButtonCrop" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:id="@+id/previousButtonCrop"
-        android:background="@drawable/backward_arrow"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        />
+        android:layout_below="@+id/nextButtonCrop" />
 
     <ImageButton
         android:layout_width="wrap_content"

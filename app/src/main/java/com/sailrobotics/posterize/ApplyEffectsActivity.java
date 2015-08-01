@@ -34,7 +34,6 @@ public class ApplyEffectsActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_apply_effects);
 
-        previousActivityButton = (ImageButton)findViewById(R.id.imageButtonLeftEffect);
         nextActivityButton = (ImageButton)findViewById(R.id.imageButtonRightEffect);
         invertImageButton = (ImageButton)findViewById(R.id.invertIB);
         sepiaImageButton = (ImageButton)findViewById(R.id.sepiaIB);
@@ -132,26 +131,10 @@ public class ApplyEffectsActivity extends Activity {
             }
         });
 
-        /*previousActivityButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                previousIntent = new Intent(ApplyEffectsActivity.this, .class);
-                startActivity(previousIntent);
-            }
-        });*/
-
         nextActivityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 File file = savePictureAfterEffects();
-
-                /*nextIntent = new Intent(CropImageActivity.this,PosterizeActivity.class);
-                nextIntent.putExtra("filePath", file.getPath());
-                startActivity(nextIntent);*/
-
-                /*nextIntent = new Intent(ApplyEffectsActivity.this,PosterizeActivity.class);
-                nextIntent.putExtra("filePath", file.getPath());
-                startActivity(nextIntent);*/
 
                 nextIntent = new Intent(ApplyEffectsActivity.this, PosterMeasurementsActivity.class);
                 nextIntent.putExtra("filePath", file.getPath());

@@ -5,18 +5,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/background_poster_measurements1">
 
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:id="@+id/previousButton"
-        android:background="@drawable/backward_arrow"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        />
-
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="40dp"
