@@ -11,7 +11,9 @@
         android:layout_height="480dp"
         android:layout_gravity="center"
         android:layout_alignParentStart="true"
-        android:padding="5dp"/>
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:padding="10dp"/>
 
     <EditText
         android:layout_width="wrap_content"
@@ -31,7 +33,7 @@
         android:layout_height="wrap_content"
         android:text="Proceed"
         android:id="@+id/proceedButton"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/knownLength"
         android:layout_centerHorizontal="true" />
 
 

@@ -51,6 +51,7 @@ public class MarkReferenceActivity extends Activity {
                 Log.e("Image Uri", imagePath);
                 File tmp = new File(imagePath);
                 ImageSurface image = new ImageSurface(this, tmp);
+                image.setFitsSystemWindows(true);
                 plotImageView.addView(image);
                 plot = new PlotPoint(getBaseContext());
                 plotImageView.addView(plot);

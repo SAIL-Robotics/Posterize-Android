@@ -57,8 +57,8 @@ public class ApplyEffectsActivity extends Activity {
         thumbnailBitmap = baseBitmap;
 
         BitmapFactory.Options myThumbnailOptions = new BitmapFactory.Options();
-        myThumbnailOptions.inSampleSize = 7;
-        Bitmap thumbnailBitmap = BitmapFactory.decodeFile(path, myThumbnailOptions);
+        myThumbnailOptions.inSampleSize = 5;
+        thumbnailBitmap = BitmapFactory.decodeFile(path, myThumbnailOptions);
 
         noneImageButton.setImageBitmap(baseBitmap);
         ApplyEffectsToButon effect = new ApplyEffectsToButon();
@@ -196,7 +196,7 @@ public class ApplyEffectsActivity extends Activity {
         @Override
         protected void onPreExecute()
         {
-            progressDialog= ProgressDialog.show(ApplyEffectsActivity.this, "Posterize","Loading Page...", true);
+            progressDialog= ProgressDialog.show(ApplyEffectsActivity.this, "Posterize","Loading Effects...", true);
 
             //do initialization of required objects objects here
         };
