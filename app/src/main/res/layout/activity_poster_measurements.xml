@@ -79,15 +79,21 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Camera Ruler"
-            android:id="@+id/invokeCameraButton"
+            android:text="Ruler"
+            android:id="@+id/rulerButton"
             android:layout_alignParentLeft="true"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Camera"
+            android:id="@+id/invokeCameraButton"
+            android:layout_toRightOf="@+id/rulerButton"/>
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="\?"
             android:id="@+id/instructionButton"
-            android:layout_alignParentRight="true" />
+            android:layout_toRightOf="@+id/invokeCameraButton" />
     </RelativeLayout>
 
 </RelativeLayout>

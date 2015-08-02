@@ -105,7 +105,7 @@
                 <TextView
                     android:layout_width="80dp"
                     android:layout_height="wrap_content"
-                    android:text="Greyscale"
+                    android:text="Grayscale"
                     android:textColor="#FFFFFF"
                     android:layout_below="@+id/greyScaleIB"
                     android:gravity="center_horizontal"/>

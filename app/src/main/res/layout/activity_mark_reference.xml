@@ -8,10 +8,8 @@
     <FrameLayout
         android:id="@+id/posterImageView"
         android:layout_width="wrap_content"
-        android:layout_height="480dp"
-        android:layout_gravity="center"
-        android:layout_alignParentStart="true"
-        android:scaleType="fitCenter"
+        android:layout_height="510dp"
+        android:layout_gravity="center_vertical"
         android:adjustViewBounds="true"
         android:padding="10dp"/>
 
@@ -20,9 +18,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/knownLength"
         android:inputType="numberDecimal"
-        android:hint="Enter measurement"
-        android:textColorHint="@android:color/white"
-        android:ems="10"
+        android:hint=" Enter height/width (in cms)"
+        android:textColorHint="@android:color/darker_gray"
         android:layout_below="@+id/posterImageView"
         android:textColor="@android:color/white"
         android:layout_toStartOf="@+id/redo" />

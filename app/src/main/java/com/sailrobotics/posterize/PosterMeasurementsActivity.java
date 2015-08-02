@@ -32,6 +32,7 @@ public class PosterMeasurementsActivity extends Activity {
     String posterHeightString;
     String posterWidthString;
     Button instructionButton;
+    Button rulerButton;
     DecimalFormat dec;
 
     @Override
@@ -50,9 +51,18 @@ public class PosterMeasurementsActivity extends Activity {
         aspectHeight = (Button) findViewById(R.id.aspectHeight);
         takePictureButton = (Button) findViewById(R.id.invokeCameraButton);
         instructionButton = (Button) findViewById(R.id.instructionButton);
+        rulerButton = (Button) findViewById(R.id.rulerButton);
 
         width = (EditText) findViewById(R.id.editWidth);
         height = (EditText) findViewById(R.id.editHeight);
+
+        rulerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent rulerActivityIntent = new Intent(PosterMeasurementsActivity.this,RulerActivity.class);
+                startActivity(rulerActivityIntent);
+            }
+        });
 
         instructionButton.setOnClickListener(new View.OnClickListener() {
             @Override

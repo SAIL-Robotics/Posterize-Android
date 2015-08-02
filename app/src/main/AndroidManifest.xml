@@ -81,6 +81,11 @@
             android:name=".InstructionActivity"
             android:label="InstructionActivity" >
         </activity>
+        <activity
+            android:name=".RulerActivity"
+            android:label="RulerActivity">
+        </activity>
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
