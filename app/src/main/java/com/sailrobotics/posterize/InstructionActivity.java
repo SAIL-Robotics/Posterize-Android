@@ -28,7 +28,7 @@ public class InstructionActivity extends Activity {
         bitmapHeight = intent.getStringExtra("bitmapHeight");
 
         myTextView.setText("1. Press the Camera Ruler button to invoke the camera. Take a picture of the area where the poster needs to be placed.\n\n" +
-                "2. Place two markers on the image. Remember you must know the distance between the two markers. Enter that distance(in cms) under 'Enter measurements'\n\n" +
+                "2. Place two markers on the image. Remember you must know the distance between the two markers. For this purpose, you may use a ruler that would appear when the 'Ruler' button is clicked. Enter that distance(in cms) under 'Enter measurements'\n\n" +
                 "3. Place next set of two markers on the image. These two end points could be either the width or height of the actual poster.\n\n"+
                 "4. Now press the calculate button. You will receive a message that represents one of the dimensions.\n\n"+
                 "5. If you feel that the poster width or height is inaccurate, you can either re-enter the distance under 'Enter Measurements' or press the reset marker button and repeat the process.\n\n"+
