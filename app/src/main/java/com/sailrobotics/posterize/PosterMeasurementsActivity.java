@@ -119,7 +119,7 @@ public class PosterMeasurementsActivity extends Activity {
             public void onClick(View v) {
                 posterWidthString = width.getText().toString();
                 posterHeightString = height.getText().toString();
-                if (posterHeightString.equals("") && posterWidthString.equals("")) {
+                if (posterHeightString.equals("") || posterWidthString.equals("")) {
                     Toast.makeText(getApplicationContext(),"Enter poster dimensions",Toast.LENGTH_SHORT).show();
                 }
                 else {
