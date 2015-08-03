@@ -22,7 +22,7 @@ import java.util.List;
 public class PosterSummaryActivity extends Activity {
 
     TextView imagePath,numberOfSheets,orientationType;
-    ImageButton googleDriveButton,facebookButton,twitterButton,instagramButton;
+    ImageButton googleDriveButton,whatsappButton,twitterButton;
     String pdfPath,orientation;
     String sheetsCount,fileName;
     Button openPdfButton;
@@ -39,7 +39,7 @@ public class PosterSummaryActivity extends Activity {
         orientationType = (TextView)findViewById(R.id.imageOrientation);
         openPdfButton = (Button)findViewById(R.id.generatePdfButton);
         googleDriveButton = (ImageButton) findViewById(R.id.driveImageButton);
-        facebookButton = (ImageButton) findViewById(R.id.facebookImageButton);
+        whatsappButton = (ImageButton) findViewById(R.id.whatsappImageButton);
         twitterButton = (ImageButton) findViewById(R.id.twitterImageButton);
 
         Intent intent = getIntent();
@@ -67,7 +67,7 @@ public class PosterSummaryActivity extends Activity {
             }
         });
 
-        facebookButton.setOnClickListener(new View.OnClickListener() {
+        whatsappButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!isUploaded)

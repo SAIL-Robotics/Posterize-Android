@@ -115,8 +115,8 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginLeft="30dp"
-                android:id="@+id/facebookImageButton"
-                android:background="@drawable/facebook"
+                android:id="@+id/whatsappImageButton"
+                android:background="@drawable/whatsapp"
                 android:layout_toRightOf="@+id/driveImageButton"/>
 
             <ImageButton
@@ -125,7 +125,7 @@
                 android:layout_marginLeft="30dp"
                 android:id="@+id/twitterImageButton"
                 android:background="@drawable/twitter"
-                android:layout_toRightOf="@+id/facebookImageButton"/>
+                android:layout_toRightOf="@+id/whatsappImageButton"/>
 
         </RelativeLayout>
 
