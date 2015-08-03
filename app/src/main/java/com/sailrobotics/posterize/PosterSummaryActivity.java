@@ -3,6 +3,8 @@ package com.sailrobotics.posterize;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.util.List;
 
 
 public class PosterSummaryActivity extends Activity {
@@ -23,6 +26,8 @@ public class PosterSummaryActivity extends Activity {
     String pdfPath,orientation;
     String sheetsCount,fileName;
     Button openPdfButton;
+    String shareURL;
+    boolean isUploaded = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +41,6 @@ public class PosterSummaryActivity extends Activity {
         googleDriveButton = (ImageButton) findViewById(R.id.driveImageButton);
         facebookButton = (ImageButton) findViewById(R.id.facebookImageButton);
         twitterButton = (ImageButton) findViewById(R.id.twitterImageButton);
-        instagramButton = (ImageButton) findViewById(R.id.instagramImageButton);
 
         Intent intent = getIntent();
         pdfPath = intent.getStringExtra("pdfPath");
@@ -44,19 +48,21 @@ public class PosterSummaryActivity extends Activity {
         sheetsCount = intent.getStringExtra("sheets");
         orientation = intent.getStringExtra("orientation");
 
+        shareURL = "http://192.168.1.163/AndroidFileUpload/uploads/" + fileName;
+
         numberOfSheets.setText(sheetsCount);
         imagePath.setText(pdfPath);
         orientationType.setText(orientation);
 
+        uploadPDFtoServer();
 
         googleDriveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Google Drive", Toast.LENGTH_SHORT).show();
-                //Intent googleDriveActivityIntent = new Intent(PosterSummaryActivity.this,GoogleDriveActivity.class);
-                Intent googleDriveActivityIntent = new Intent(PosterSummaryActivity.this,UploadPDFWebServer.class);
-                googleDriveActivityIntent.putExtra("FilePath",pdfPath);
-                googleDriveActivityIntent.putExtra("FileName",fileName);
+                Intent googleDriveActivityIntent = new Intent(PosterSummaryActivity.this, GoogleDriveActivity.class);
+                googleDriveActivityIntent.putExtra("FilePath", pdfPath);
+                googleDriveActivityIntent.putExtra("FileName", fileName);
                 startActivity(googleDriveActivityIntent);
             }
         });
@@ -64,21 +70,65 @@ public class PosterSummaryActivity extends Activity {
         facebookButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Facebook", Toast.LENGTH_SHORT).show();
+                if(!isUploaded)
+                {
+                    uploadPDFtoServer();
+                }
+
+                Intent tweetIntent = new Intent(Intent.ACTION_SEND);
+                tweetIntent.putExtra(Intent.EXTRA_TEXT, "Check out the new poster I created using @posterize_app " + shareURL);
+                tweetIntent.setType("text/plain");
+
+                PackageManager packManager = getPackageManager();
+                List<ResolveInfo> resolvedInfoList = packManager.queryIntentActivities(tweetIntent,  PackageManager.MATCH_DEFAULT_ONLY);
+
+                boolean resolved = false;
+                for(ResolveInfo resolveInfo: resolvedInfoList){
+                    if(resolveInfo.activityInfo.packageName.startsWith("com.whatsapp")){
+                        tweetIntent.setClassName(
+                                resolveInfo.activityInfo.packageName,
+                                resolveInfo.activityInfo.name );
+                        resolved = true;
+                        break;
+                    }
+                }
+                if(resolved){
+                    startActivity(tweetIntent);
+                }else{
+                    Toast.makeText(getApplicationContext(), "Whatsapp app isn't found", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
         twitterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Twitter", Toast.LENGTH_SHORT).show();
-            }
-        });
+                if(!isUploaded)
+                {
+                    uploadPDFtoServer();
+                }
+                Intent tweetIntent = new Intent(Intent.ACTION_SEND);
+                tweetIntent.putExtra(Intent.EXTRA_TEXT, "Check out the new poster I created using @posterize_app " + shareURL);
+                tweetIntent.setType("text/plain");
 
-        instagramButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getApplicationContext(), "Instagram", Toast.LENGTH_SHORT).show();
+                PackageManager packManager = getPackageManager();
+                List<ResolveInfo> resolvedInfoList = packManager.queryIntentActivities(tweetIntent,  PackageManager.MATCH_DEFAULT_ONLY);
+
+                boolean resolved = false;
+                for(ResolveInfo resolveInfo: resolvedInfoList){
+                    if(resolveInfo.activityInfo.packageName.startsWith("com.twitter.android")){
+                        tweetIntent.setClassName(
+                                resolveInfo.activityInfo.packageName,
+                                resolveInfo.activityInfo.name );
+                        resolved = true;
+                        break;
+                    }
+                }
+                if(resolved){
+                    startActivity(tweetIntent);
+                }else{
+                    Toast.makeText(getApplicationContext(), "Twitter app isn't found", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
@@ -123,5 +173,21 @@ public class PosterSummaryActivity extends Activity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void uploadPDFtoServer()
+    {
+        Intent googleDriveActivityIntent = new Intent(PosterSummaryActivity.this,UploadPDFWebServer.class);
+        googleDriveActivityIntent.putExtra("FilePath",pdfPath);
+        googleDriveActivityIntent.putExtra("FileName",fileName);
+        startActivity(googleDriveActivityIntent);
+        isUploaded = true;
+    }
+
+    @Override
+    public void onResume()
+    {
+        super.onResume();
+        isUploaded = false;
     }
 }

@@ -127,14 +127,6 @@
                 android:background="@drawable/twitter"
                 android:layout_toRightOf="@+id/facebookImageButton"/>
 
-            <ImageButton
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginLeft="30dp"
-                android:id="@+id/instagramImageButton"
-                android:background="@drawable/instagram"
-                android:layout_toRightOf="@+id/twitterImageButton"/>
-
         </RelativeLayout>
 
     </LinearLayout>

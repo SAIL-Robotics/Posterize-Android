@@ -25,6 +25,7 @@ import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Image;
 import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import java.io.ByteArrayOutputStream;
@@ -104,12 +105,12 @@ public class PosterizeActivity extends ActionBarActivity {
             public void onClick(View v) {
                 SimpleDateFormat myDateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
                 String currentTime = myDateFormat.format(new Date());
-                FILEPATH = "mnt/sdcard/Poster_"+currentTime+".pdf";
-                FILENAME = "Poster_"+currentTime+".pdf";
+                FILEPATH = "mnt/sdcard/Poster_" + currentTime + ".pdf";
+                FILENAME = "Poster_" + currentTime + ".pdf";
                 imageDivision(oldWidth, oldHeight, totalA4Width, totalA4Height);
                 nextIntent = new Intent(PosterizeActivity.this, PosterSummaryActivity.class);
                 nextIntent.putExtra("pdfPath", FILEPATH);
-                nextIntent.putExtra("FileName",FILENAME);
+                nextIntent.putExtra("FileName", FILENAME);
                 nextIntent.putExtra("sheets", Math.ceil(totalA4Width) * Math.ceil(totalA4Height) + "");
                 nextIntent.putExtra("orientation", orientation + "");
                 startActivity(nextIntent);
@@ -163,7 +164,7 @@ public class PosterizeActivity extends ActionBarActivity {
 
         newTotalPapers = (int)(Math.ceil(totalA4Width) * Math.ceil(totalA4Height));
 
-        Log.e("CutImage", totalA4Width +" "+ totalA4Height + " " + newTotalPapers);
+        Log.e("CutImage", totalA4Width + " " + totalA4Height + " " + newTotalPapers);
 
         if(totalPapers == newTotalPapers)
         {
@@ -174,7 +175,7 @@ public class PosterizeActivity extends ActionBarActivity {
             Toast.makeText(getApplication(), "You just saved "+ (totalPapers - newTotalPapers) + " papers", Toast.LENGTH_SHORT).show();
         }
 
-        Log.e("CutImage", totalA4Width +" "+ totalA4Height);
+        Log.e("CutImage", totalA4Width + " " + totalA4Height);
         //afterOptimize.setText(totalA4Width + "  " + totalA4Height);
         drawCutLine(oldWidth, oldHeight, totalA4Width, totalA4Height);
     }
@@ -249,7 +250,19 @@ public class PosterizeActivity extends ActionBarActivity {
             int xStart = 0, yStart = 0, xEnd = (int)(loopWidth), yEnd = (int)(loopHeight);
             boolean isPartWidth = false;
             boolean isPartHeight = false;
-
+            document.setMargins(2, 2, 2, 2);
+            document.addTitle("Posterize");
+            document.add(new Paragraph("Poster Created Using Posterize"));
+            document.add(new Paragraph("PDF Location - " + FILEPATH));
+            document.add(new Paragraph("FileName - " + FILENAME));
+            document.add(new Paragraph("Total A4 Sheets - " + Math.ceil(totalA4Width) * Math.ceil(totalA4Height) + ""));
+            document.add(new Paragraph("Orientation - " + orientation + ""));
+            for (int i=0; i< 10;i++)
+            {
+                document.add(new Paragraph(""));
+            }
+            document.add(new Paragraph("Powered by Posterize"));
+            document.newPage();
             for(int j = 0; j <= (int) totalA4Height; j++)
             {
                 for(int i=0; i <= (int) totalA4Width; i++)

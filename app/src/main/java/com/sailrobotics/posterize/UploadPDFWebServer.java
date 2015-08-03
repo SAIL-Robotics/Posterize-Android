@@ -60,6 +60,7 @@ public class UploadPDFWebServer extends Activity {
         fileName = intent.getStringExtra("FileName");
         parameterName = "image";
         onUploadButtonClick();
+        Toast.makeText(getApplicationContext(), "Check Notification bar for file upload", Toast.LENGTH_SHORT).show();
         finish();
     }
 
