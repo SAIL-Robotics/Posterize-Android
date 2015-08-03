@@ -55,9 +55,10 @@ public class UploadPDFWebServer extends Activity {
 
         UploadService.NAMESPACE = "com.sailrobotics.posterize";
 
-        serverUrl = "http://192.168.1.163/AndroidFileUpload/fileUpload.php";
+        serverUrl = "http://54.200.90.145:8001/AndroidFileUpload/fileUpload.php";
         fileToUpload = intent.getStringExtra("FilePath");
         fileName = intent.getStringExtra("FileName");
+
         parameterName = "image";
         onUploadButtonClick();
         Toast.makeText(getApplicationContext(), "Check Notification bar for file upload", Toast.LENGTH_SHORT).show();
@@ -99,7 +100,7 @@ public class UploadPDFWebServer extends Activity {
 
         try {
             UploadService.startUpload(request);
-            Log.e(TAG, "http://192.168.1.163/AndroidFileUpload/uploads/" + fileName);
+            Log.e(TAG, "http://54.200.90.145:8001/AndroidFileUpload/uploads/" + fileName);
         } catch (Exception exc) {
             Toast.makeText(this, "Malformed upload request. " + exc.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
         }

@@ -48,7 +48,7 @@ public class PosterSummaryActivity extends Activity {
         sheetsCount = intent.getStringExtra("sheets");
         orientation = intent.getStringExtra("orientation");
 
-        shareURL = "http://192.168.1.163/AndroidFileUpload/uploads/" + fileName;
+        shareURL = "http://54.200.90.145:8001/AndroidFileUpload/uploads/" + fileName;
 
         numberOfSheets.setText(sheetsCount);
         imagePath.setText(pdfPath);
