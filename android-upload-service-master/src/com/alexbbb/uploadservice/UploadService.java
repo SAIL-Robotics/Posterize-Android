@@ -1,5 +1,14 @@
 package com.alexbbb.uploadservice;
 
+import android.annotation.SuppressLint;
+import android.app.IntentService;
+import android.app.NotificationManager;
+import android.content.Intent;
+import android.os.PowerManager;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationCompat.Builder;
+import android.util.Log;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -11,15 +20,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
-
-import android.annotation.SuppressLint;
-import android.app.IntentService;
-import android.app.NotificationManager;
-import android.content.Intent;
-import android.os.PowerManager;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationCompat.Builder;
-import android.util.Log;
 
 /**
  * Service to upload files as a multi-part form data in background using HTTP POST with notification center progress
@@ -461,7 +461,12 @@ public class UploadService extends IntentService {
         intent.putExtra(SERVER_RESPONSE_CODE, responseCode);
         intent.putExtra(SERVER_RESPONSE_MESSAGE, filteredMessage);
         sendBroadcast(intent);
-        wakeLock.release();
+        try{
+            wakeLock.release();
+        }
+        catch (Exception e) {
+
+        }
     }
 
     private void broadcastError(final String uploadId, final Exception exception) {
@@ -474,7 +479,12 @@ public class UploadService extends IntentService {
         intent.putExtra(STATUS, STATUS_ERROR);
         intent.putExtra(ERROR_EXCEPTION, exception);
         sendBroadcast(intent);
-        wakeLock.release();
+        try{
+            wakeLock.release();
+        }
+        catch (Exception e) {
+
+        }
 
     }
 

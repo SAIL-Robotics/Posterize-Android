@@ -3,8 +3,8 @@
     package="com.alexbbb.uploadservice.test" >
 
     <uses-sdk
-        android:minSdkVersion="1"
-        android:targetSdkVersion="1" />
+        android:minSdkVersion="21"
+        android:targetSdkVersion="21" />
 
     <instrumentation
         android:name="android.test.InstrumentationTestRunner"
@@ -13,14 +13,14 @@
         android:label="Tests for com.alexbbb.uploadservice.test"
         android:targetPackage="com.alexbbb.uploadservice.test" />
 
-    <service
-        android:name="com.alexbbb.uploadservice.UploadService"
-        android:enabled="true"
-        android:exported="true" >
-    </service>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application>
         <uses-library android:name="android.test.runner" />
+
+        <service android:name="com.alexbbb.uploadservice.UploadService" >
+        </service>
     </application>
 
 </manifest>

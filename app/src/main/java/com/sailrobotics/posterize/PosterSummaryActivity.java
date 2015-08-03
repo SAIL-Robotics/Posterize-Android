@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Environment;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -55,7 +53,8 @@ public class PosterSummaryActivity extends Activity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getApplicationContext(), "Google Drive", Toast.LENGTH_SHORT).show();
-                Intent googleDriveActivityIntent = new Intent(PosterSummaryActivity.this,GoogleDriveActivity.class);
+                //Intent googleDriveActivityIntent = new Intent(PosterSummaryActivity.this,GoogleDriveActivity.class);
+                Intent googleDriveActivityIntent = new Intent(PosterSummaryActivity.this,UploadPDFWebServer.class);
                 googleDriveActivityIntent.putExtra("FilePath",pdfPath);
                 googleDriveActivityIntent.putExtra("FileName",fileName);
                 startActivity(googleDriveActivityIntent);
