@@ -1,0 +1,7 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.alexbbb.uploadservice.MainActivity">
+    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+        android:orderInCategory="100" android:showAsAction="never" />
+</menu>
+<!-- From: file:/H:/Android/Final%20Posterize/Posterize-Android/android-upload-service-master/res/menu/menu_main.xml --><!-- From: file:/H:/Android/Final%20Posterize/Posterize-Android/android-upload-service-master/build/intermediates/bundles/debug/res/menu/menu_main.xml -->

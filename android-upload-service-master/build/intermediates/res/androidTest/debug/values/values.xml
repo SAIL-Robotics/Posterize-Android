@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/H:/Android/Final%20Posterize/Posterize-Android/android-upload-service-master/build/intermediates/bundles/debug/res/values/values.xml -->
+    <eat-comment/>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <string name="accept_self_signed_certs">Accept self-signed certificates</string>
+    <string name="action_settings">Settings</string>
+    <string name="app_name">Upload Service</string>
+    <string name="cancel_upload">Cancel upload</string>
+    <string name="file_does_not_exist">The file to upload does not exist!</string>
+    <string name="file_path_hint">/path/to/your/file.ext</string>
+    <string name="file_to_upload_path">Path of the file to upload</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="parameter_name">File parameter name</string>
+    <string name="parameter_name_hint">E.g. uploaded_file</string>
+    <string name="provide_file_to_upload">Please provide a full path to a file to upload</string>
+    <string name="provide_param_name">Please provide the name of the form parameter that will contain file\'s data</string>
+    <string name="provide_valid_server_url">Please provide a valid server URL</string>
+    <string name="server_script_url">Server script URL</string>
+    <string name="server_url_hint">http://company.com/path/to/script</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="upload">Upload</string>
+    <string name="upload_error">Error while uploading</string>
+    <string name="upload_progress">Upload progress</string>
+    <string name="upload_success">Upload completed successfully</string>
+    <string name="uploading">Uploading</string>
+    <style name="AppBaseTheme" parent="android:Theme.Light">
+        <!--
+            Theme customizations available in newer API levels can go in
+            res/values-vXX/styles.xml, while customizations related to
+            backward-compatibility can go here.
+        -->
+    </style>
+    <style name="AppTheme" parent="AppBaseTheme">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+</resources>

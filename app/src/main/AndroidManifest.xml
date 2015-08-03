@@ -83,12 +83,17 @@
         </activity>
         <activity
             android:name=".RulerActivity"
-            android:label="RulerActivity">
+            android:label="RulerActivity" >
         </activity>
 
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".UploadPDFWebServer"
+            android:label="@string/title_activity_upload_pdfweb_server" >
+        </activity>
     </application>
 
 </manifest>
