@@ -54,8 +54,6 @@ public class PosterSummaryActivity extends Activity {
         imagePath.setText(pdfPath);
         orientationType.setText(orientation);
 
-        uploadPDFtoServer();
-
         googleDriveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -107,7 +105,10 @@ public class PosterSummaryActivity extends Activity {
                 {
                     uploadPDFtoServer();
                 }
-                Intent tweetIntent = new Intent(Intent.ACTION_SEND);
+                Intent twitterIntent = new Intent(PosterSummaryActivity.this, TwitterActivity.class);
+                twitterIntent.putExtra("postMessage", "Check out the new poster I created using @posterize_app " + shareURL);
+                startActivity(twitterIntent);
+                /*Intent tweetIntent = new Intent(Intent.ACTION_SEND);
                 tweetIntent.putExtra(Intent.EXTRA_TEXT, "Check out the new poster I created using @posterize_app " + shareURL);
                 tweetIntent.setType("text/plain");
 
@@ -128,7 +129,7 @@ public class PosterSummaryActivity extends Activity {
                     startActivity(tweetIntent);
                 }else{
                     Toast.makeText(getApplicationContext(), "Twitter app isn't found", Toast.LENGTH_LONG).show();
-                }
+                }*/
             }
         });
 

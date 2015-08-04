@@ -30,4 +30,5 @@ dependencies {
     compile 'com.google.android.gms:play-services:7.5.0'
     compile project(':itextpdf')
     compile project(':android-upload-service-master')
+    compile 'org.twitter4j:twitter4j-core:4.0.4'
 }

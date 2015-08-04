@@ -11,4 +11,15 @@
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_upload_pdfweb_server">UploadPDFWebServer</string>
+    <string name="title_activity_twitter">TwitterActivity</string>
+    <string name="title_activity_twitter_web_view">TwitterWebViewActivity</string>
+
+    <!-- Twitter Configurations -->
+    <string name="twitter_callback">http://android.app</string>
+    <string name="twitter_consumer_key">MM9W9SdxPxHSKA1KUJLCAY1fM</string>
+    <string name="twitter_consumer_secret">m4nOD48Rmp3Gi6OpinK2adUvxoVoyO17D5yyXsZoudWCiFKSFV</string>
+    <string name="twitter_oauth_verifier">oauth_verifier</string>
+    <string name="hello">Hello, </string>
+    <!-- End Configurations -->
+
 </resources>

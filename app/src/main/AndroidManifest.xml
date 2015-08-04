@@ -95,6 +95,14 @@
             android:name=".UploadPDFWebServer"
             android:label="@string/title_activity_upload_pdfweb_server" >
         </activity>
+        <activity
+            android:name=".TwitterActivity"
+            android:label="@string/title_activity_twitter" >
+        </activity>
+        <activity
+            android:name=".TwitterWebViewActivity"
+            android:label="@string/title_activity_twitter_web_view" >
+        </activity>
     </application>
 
 </manifest>
