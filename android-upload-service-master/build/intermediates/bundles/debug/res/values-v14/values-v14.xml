@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- From: file:/H:/Android/Final%20Posterize/Posterize-Android/android-upload-service-master/res/values-v14/styles.xml -->
+    <!-- From: file:/C:/Users/arjun/AndroidStudioProjects/Posterize1/Posterize-Android/android-upload-service-master/res/values-v14/styles.xml -->
     <eat-comment/>
     <style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
         <!-- API 14 theme customizations can go here. -->

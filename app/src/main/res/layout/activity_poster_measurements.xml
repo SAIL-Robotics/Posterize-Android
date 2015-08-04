@@ -37,7 +37,7 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" Set Width "
+            android:text=" Set Height "
             android:id="@+id/aspectWidth"
             android:layout_alignRight="@+id/editWidth"
             android:layout_centerHorizontal="true"/>
@@ -64,7 +64,7 @@
             style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Set Height"
+            android:text=" Set Width "
             android:id="@+id/aspectHeight"
             android:layout_alignRight="@+id/editHeight"
             android:layout_centerHorizontal="true" />
